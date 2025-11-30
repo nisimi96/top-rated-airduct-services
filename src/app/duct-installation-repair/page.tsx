@@ -1,148 +1,200 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Phone, ArrowRight, Wrench, DollarSign, Zap, AlertTriangle } from 'lucide-react'
+import { Phone, Wrench, Wind, Zap, AlertCircle, CheckCircle, Ruler, Construction, Clock } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Air Duct Installation & Repair in Atlanta | Leaky Duct Sealing',
+  title: 'Air Duct Installation & Repair Services Atlanta, GA | HVAC Ductwork',
   description: 'Professional ductwork repair, sealing, and installation. Fix leaky ducts and improve HVAC efficiency. Licensed and insured.',
 }
 
-const benefits = [
-  { title: "Improved Efficiency", desc: "Sealing leaks reduces wasted conditioned air.", icon: Zap },
-  { title: "Lower Bills", desc: "Reduce energy consumption and save money.", icon: DollarSign },
-  { title: "Better Comfort", desc: "Even temperature distribution throughout home.", icon: AlertTriangle },
-  { title: "Proper Installation", desc: "Code-compliant ductwork for safety.", icon: Wrench },
+const commonIssues = [
+  {
+    title: "Poor Airflow",
+    desc: "If some rooms are too hot or too cold, your ducts may be crushed, disconnected, or leaking.",
+    icon: Wind
+  },
+  {
+    title: "High Energy Bills",
+    desc: "Leaky ducts can lose up to 30% of conditioned air, forcing your system to work harder.",
+    icon: Zap
+  },
+  {
+    title: "Noisy Operation",
+    desc: "Popping, banging, or whistling sounds often indicate loose sections or pressure imbalances.",
+    icon: AlertCircle
+  },
+  {
+    title: "Old Materials",
+    desc: "Flexible ducts have a lifespan. If yours are over 15 years old, they may be deteriorating.",
+    icon: Clock
+  },
 ];
 
 export default function DuctInstallationRepairPage() {
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-r from-brand-blue to-blue-800 text-white">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Duct Installation & Repair</h1>
-          <p className="text-xl text-blue-100 max-w-2xl mb-8">
-            Leaky ducts waste energy and money. We fix what others ignore with professional repair and installation.
+    <div className="pt-20 bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-brand-blue text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-blue-900/50"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 bg-brand-lime/10 px-4 py-2 rounded-full border border-brand-lime/20 mb-6">
+            <Wrench className="w-5 h-5 text-brand-lime" />
+            <span className="text-brand-lime font-bold tracking-wide uppercase text-sm">Full Service HVAC Solutions</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            Expert Air Duct <br/>
+            <span className="text-brand-lime">Installation & Repair</span>
+          </h1>
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+            Stop wasting money on conditioned air that never reaches your rooms. We seal leaks, repair damage, and install custom ductwork for peak efficiency.
           </p>
           <a
             href={COMPANY_INFO.phoneLink}
-            className="inline-flex items-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold text-lg py-3 px-8 rounded-full transition-transform transform hover:scale-105"
+            className="inline-flex items-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold py-4 px-8 rounded-full transition-all shadow-lg hover:shadow-lime-500/20 text-lg"
           >
-            <Phone className="w-5 h-5" />
-            Get Free Estimate
+            <Phone className="w-5 h-5 fill-current" />
+            <span>Schedule Free Inspection</span>
           </a>
         </div>
       </section>
 
-      {/* The Problem */}
+      {/* The Importance of Sealing */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-brand-blue mb-6">Why Duct Repair Matters</h2>
-              <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                Leaky ductwork can waste 20-30% of your conditioned air before it reaches your living spaces. This means your HVAC system works harder, uses more energy, and your home stays uncomfortable.
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <div className="lg:w-1/2">
+              <h2 className="text-3xl md:text-4xl font-bold text-brand-blue mb-6">Why Duct Repair Matters</h2>
+              <div className="w-20 h-1 bg-brand-lime rounded-full mb-8"></div>
+              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                Your HVAC system is only as good as the ductwork connected to it. Even a brand new furnace or A/C unit will fail to keep you comfortable if the ducts are leaking air into your attic or crawlspace.
               </p>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Our technicians locate leaks, seal them properly, and can install new ductwork if needed—all to code and to spec.
+              <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                <strong>The ENERGY STAR Reality:</strong> In typical houses, about 20% to 30% of the air that moves through the duct system is lost due to leaks, holes, and poorly connected ducts.
               </p>
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-6 h-6 text-brand-lime flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">Lower Monthly Utility Bills</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-6 h-6 text-brand-lime flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">Consistent Temperature in Every Room</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-6 h-6 text-brand-lime flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">Extended HVAC System Lifespan</span>
+                </div>
+              </div>
             </div>
-            <div className="bg-blue-50 p-8 rounded-lg">
-              <h3 className="text-2xl font-bold text-brand-blue mb-6">What We Fix:</h3>
-              <ul className="space-y-4">
-                {[
-                  "Disconnected or loose ducts",
-                  "Duct leaks and gaps",
-                  "Poor duct routing",
-                  "Undersized or oversized ducts",
-                  "Poorly sealed connections",
-                  "Damaged or crushed ductwork",
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="text-brand-lime font-bold">→</span>
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="lg:w-1/2 relative">
+              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-100 relative h-96">
+                <Image
+                  src="/images/placeholders/hvac-tech.jpg"
+                  alt="Technician repairing HVAC ductwork"
+                  fill
+                  className="w-full h-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-brand-blue to-transparent p-8">
+                  <p className="text-white font-bold text-xl">We Fix What Others Ignore</p>
+                </div>
+              </div>
+              {/* Floating Stats Card */}
+              <div className="absolute -bottom-6 -right-6 bg-brand-lime p-6 rounded-2xl shadow-xl hidden md:block max-w-xs">
+                <p className="text-brand-blue font-bold text-lg leading-tight">
+                  Average energy savings of 20% after proper sealing.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* Common Issues Grid */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Benefits of Professional Duct Repair</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-blue mb-4">Signs You Need Repair</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              If you're experiencing any of these issues, it's time for a professional assessment.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-lg shadow-lg text-center">
-                <benefit.icon className="w-10 h-10 text-brand-lime mx-auto mb-4" />
-                <h3 className="font-bold text-brand-blue mb-2">{benefit.title}</h3>
-                <p className="text-sm text-gray-600">{benefit.desc}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {commonIssues.map((issue, index) => (
+              <div key={index} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100 hover:border-brand-lime group">
+                <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
+                  <issue.icon className="w-8 h-8 text-brand-blue group-hover:text-brand-lime transition-colors" />
+                </div>
+                <h3 className="text-xl font-bold text-brand-blue mb-3">{issue.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{issue.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services Offered */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Our Duct Services</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {[
-              {
-                title: "Leak Detection & Sealing",
-                desc: "We locate all leaks and seal them using professional-grade materials and techniques."
-              },
-              {
-                title: "New Duct Installation",
-                desc: "Complete ductwork installation for new HVAC systems or renovations. Code-compliant."
-              },
-              {
-                title: "Duct Repair",
-                desc: "Fix damaged, crushed, or improperly routed ductwork to restore efficiency."
-              },
-              {
-                title: "Duct Testing",
-                desc: "We test your ductwork to measure efficiency before and after repairs."
-              },
-            ].map((service, idx) => (
-              <div key={idx} className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-bold text-brand-blue mb-3">{service.title}</h3>
-                <p className="text-gray-600">{service.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
+      {/* Custom Installation Services */}
       <section className="py-20 bg-brand-blue text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Fix Your Leaky Ducts Today</h2>
-          <p className="text-lg text-blue-100 mb-10 max-w-2xl mx-auto">
-            Save energy and improve comfort with professional duct repair and installation.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={COMPANY_INFO.phoneLink}
-              className="inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold text-lg py-4 px-10 rounded-full transition-transform transform hover:scale-105"
-            >
-              <Phone className="w-6 h-6" />
-              Call {COMPANY_INFO.phone}
-            </a>
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2 border-2 border-brand-lime text-brand-lime hover:bg-brand-lime hover:text-brand-blue font-bold text-lg py-4 px-10 rounded-full transition-colors"
-            >
-              View All Services <ArrowRight className="w-5 h-5" />
-            </Link>
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto bg-blue-900/50 rounded-3xl p-8 md:p-12 border border-blue-800">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="mt-2 bg-brand-lime rounded-lg p-3 shrink-0">
+                <Construction className="w-8 h-8 text-brand-blue" />
+              </div>
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">New Installation & Design</h3>
+                <p className="text-blue-100 text-lg mb-6 leading-relaxed">
+                  Building a new home or adding an extension? We design custom ductwork solutions tailored to your floor plan. Proper sizing (Manual J & D) is critical to ensure your system isn't choked for air or working too hard.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                  <div className="flex items-center gap-2">
+                    <Ruler className="w-5 h-5 text-brand-lime" />
+                    <span>Custom Sheet Metal Fabrication</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Ruler className="w-5 h-5 text-brand-lime" />
+                    <span>Flexible Duct Replacement</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Ruler className="w-5 h-5 text-brand-lime" />
+                    <span>Zone Control Systems</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Ruler className="w-5 h-5 text-brand-lime" />
+                    <span>Insulation Upgrades</span>
+                  </div>
+                </div>
+                <a
+                  href={COMPANY_INFO.phoneLink}
+                  className="inline-block bg-white text-brand-blue font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                  Get a Quote for Installation
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Final CTA Banner */}
+      <section className="bg-brand-lime py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-blue mb-6">
+            Fix Your Ducts, Fix Your Comfort
+          </h2>
+          <p className="text-brand-blue/80 text-xl mb-8 font-medium max-w-2xl mx-auto">
+            Schedule a comprehensive duct inspection today.
+          </p>
+          <a
+            href={COMPANY_INFO.phoneLink}
+            className="inline-flex items-center gap-3 bg-brand-blue hover:bg-blue-900 text-white text-2xl font-bold py-4 px-12 rounded-full shadow-xl transition-transform transform hover:-translate-y-1"
+          >
+            <Phone className="w-6 h-6 fill-current" />
+            {COMPANY_INFO.phone}
+          </a>
         </div>
       </section>
     </div>

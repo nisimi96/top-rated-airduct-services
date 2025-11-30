@@ -1,175 +1,194 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Phone, ArrowRight, Thermometer, Layers, Zap, DollarSign } from 'lucide-react'
+import { Phone, Thermometer, Layers, Zap, DollarSign, Home, CheckCircle, ArrowRight } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Blown-In Attic Insulation in Atlanta | Energy Savings',
+  title: 'Blown-In Attic Insulation Installation Atlanta | Energy Efficiency Experts',
   description: 'Professional blown-in insulation installation. Improve energy efficiency, lower utility bills. R-value optimization. Free estimates.',
 }
 
 export default function BlownInInsulationPage() {
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-r from-brand-blue to-blue-800 text-white">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Blown-In Attic Insulation</h1>
-          <p className="text-xl text-blue-100 max-w-2xl mb-8">
-            Stop energy loss through your roof. Professional insulation installation improves comfort and lowers utility bills immediately.
+    <div className="pt-20 bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-brand-blue text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-blue-900/50"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 bg-brand-lime/10 px-4 py-2 rounded-full border border-brand-lime/20 mb-6">
+            <Thermometer className="w-5 h-5 text-brand-lime" />
+            <span className="text-brand-lime font-bold tracking-wide uppercase text-sm">Home Energy Optimization</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            Blown-In Attic <br/>
+            <span className="text-brand-lime">Insulation Services</span>
+          </h1>
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+            Stop losing money through your roof. Upgrade your thermal envelope with professional blown-in insulation to keep your home comfortable year-round.
           </p>
           <a
             href={COMPANY_INFO.phoneLink}
-            className="inline-flex items-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold text-lg py-3 px-8 rounded-full transition-transform transform hover:scale-105"
+            className="inline-flex items-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold py-4 px-8 rounded-full transition-all shadow-lg hover:shadow-lime-500/20 text-lg"
           >
-            <Phone className="w-5 h-5" />
-            Get Free Estimate
+            <Phone className="w-5 h-5 fill-current" />
+            <span>Free Attic Assessment</span>
           </a>
         </div>
       </section>
 
-      {/* Why Insulation Matters */}
+      {/* R-Value and Thermal Envelope Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">The Importance of Proper Insulation</h2>
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <div className="lg:w-1/2">
+              <h2 className="text-3xl md:text-4xl font-bold text-brand-blue mb-6">Understanding R-Value</h2>
+              <div className="w-20 h-1 bg-brand-lime rounded-full mb-8"></div>
+              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                "R-Value" measures a material's resistance to heat flow. The higher the R-Value, the better the insulation. In the Atlanta area, the recommended R-Value for attics is <strong>R-38 to R-60</strong>.
+              </p>
+              <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                Most older homes in Georgia have settled insulation that barely reaches R-19, meaning you are essentially paying to heat and cool the outdoors. We "cap" your existing insulation or remove and replace it to meet modern energy standards.
+              </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Your attic is responsible for most of your home's temperature regulation. Poor or inadequate insulation allows heated and cooled air to escape, forcing your HVAC system to work harder and use more energy.
-              </p>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                Blown-in insulation fills gaps and creates an effective thermal barrier, keeping conditioned air where it belongs—inside your home.
-              </p>
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="font-bold text-brand-blue mb-3">Typical Savings:</h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li>• 15-20% reduction in heating costs</li>
-                  <li>• 10-15% reduction in cooling costs</li>
-                  <li>• Improved comfort year-round</li>
-                  <li>• ROI in 3-5 years</li>
-                </ul>
+              <div className="p-6 bg-green-50 rounded-2xl border border-green-100 flex items-start gap-4">
+                <DollarSign className="w-8 h-8 text-green-600 shrink-0" />
+                <div>
+                  <h4 className="font-bold text-green-800 text-lg mb-1">Tax Credits & Rebates</h4>
+                  <p className="text-green-700 text-sm">
+                    Upgrading your insulation may qualify you for federal energy tax credits (25C). *Always consult a tax professional for eligibility.
+                  </p>
+                </div>
               </div>
             </div>
-            <div>
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg">
-                <h3 className="text-2xl font-bold text-brand-blue mb-6">Signs You Need More Insulation:</h3>
-                <ul className="space-y-4">
-                  {[
-                    "High heating/cooling bills",
-                    "Uneven room temperatures",
-                    "Cold spots in winter",
-                    "Hot attic in summer",
-                    "Ice dams in winter",
-                    "Visible rafters in attic",
-                  ].map((sign, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <span className="text-brand-lime font-bold">✓</span>
-                      <span className="text-gray-700">{sign}</span>
+
+            <div className="lg:w-1/2">
+              <div className="bg-brand-blue p-8 rounded-3xl text-white shadow-2xl relative overflow-hidden">
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                    <Home className="w-8 h-8 text-brand-lime" />
+                    The Thermal Envelope
+                  </h3>
+                  <ul className="space-y-6">
+                    <li className="flex items-start gap-4">
+                      <div className="mt-1 bg-white/10 p-2 rounded-lg">
+                        <Zap className="w-5 h-5 text-brand-lime" />
+                      </div>
+                      <div>
+                        <strong className="block text-lg">Summer Savings</strong>
+                        <span className="text-blue-200">Prevents the intense Georgia attic heat (often 150°F+) from radiating down into your living space.</span>
+                      </div>
                     </li>
-                  ))}
-                </ul>
+                    <li className="flex items-start gap-4">
+                      <div className="mt-1 bg-white/10 p-2 rounded-lg">
+                        <Layers className="w-5 h-5 text-brand-lime" />
+                      </div>
+                      <div>
+                        <strong className="block text-lg">Winter Comfort</strong>
+                        <span className="text-blue-200">Traps the warm air generated by your furnace inside your home, preventing it from rising out through the roof.</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* Material Types Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Benefits of Blown-In Insulation</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: DollarSign, title: "Lower Bills", desc: "Reduce energy consumption and save money monthly" },
-              { icon: Thermometer, title: "Better Comfort", desc: "Consistent temperatures throughout your home" },
-              { icon: Zap, title: "Energy Efficiency", desc: "Improve your home's energy rating" },
-              { icon: Layers, title: "Complete Coverage", desc: "Fills gaps where other insulation can't reach" },
-            ].map((benefit, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-lg shadow-lg text-center">
-                <benefit.icon className="w-10 h-10 text-brand-lime mx-auto mb-4" />
-                <h3 className="font-bold text-brand-blue mb-2">{benefit.title}</h3>
-                <p className="text-sm text-gray-600">{benefit.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* R-Value */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Understanding R-Value</h2>
-
-          <div className="max-w-3xl mx-auto">
-            <p className="text-lg text-gray-600 mb-8 text-center">
-              R-Value measures insulation's resistance to heat flow. Higher R-values provide better insulation.
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-blue mb-4">Our Insulation Materials</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              We use premium, blown-in materials that fill every nook and cranny for superior coverage.
             </p>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                { region: "Atlanta Climate", recommended: "R-38 to R-49", desc: "Recommended for optimal efficiency" },
-                { region: "Most Homes", current: "R-19 or less", desc: "Often inadequate for current standards" },
-                { region: "After Upgrade", target: "R-49+", desc: "Modern efficiency standards" },
-              ].map((item, idx) => (
-                <div key={idx} className="bg-blue-50 p-6 rounded-lg text-center">
-                  <p className="text-sm text-gray-600 mb-2">{item.region || item.current}</p>
-                  <p className="text-2xl font-bold text-brand-blue">{item.recommended || item.target}</p>
-                  <p className="text-sm text-gray-600 mt-2">{item.desc}</p>
-                </div>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Fiberglass */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-brand-blue hover:border-brand-lime transition-all group">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
+                <Layers className="w-8 h-8 text-brand-blue group-hover:text-brand-lime transition-colors" />
+              </div>
+              <h3 className="text-2xl font-bold text-brand-blue mb-4">Blown-In Fiberglass</h3>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-2 text-gray-600"><CheckCircle className="w-4 h-4 text-brand-lime" /> Naturally fire resistant</li>
+                <li className="flex items-center gap-2 text-gray-600"><CheckCircle className="w-4 h-4 text-brand-lime" /> Non-corrosive & moisture resistant</li>
+                <li className="flex items-center gap-2 text-gray-600"><CheckCircle className="w-4 h-4 text-brand-lime" /> Maintains R-value over time (no settling)</li>
+              </ul>
+              <p className="text-gray-500 text-sm">
+                Ideal for "capping" existing insulation to boost performance without complete removal.
+              </p>
+            </div>
+
+            {/* Cellulose */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-brand-blue hover:border-brand-lime transition-all group">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors">
+                <Layers className="w-8 h-8 text-brand-blue group-hover:text-brand-lime transition-colors" />
+              </div>
+              <h3 className="text-2xl font-bold text-brand-blue mb-4">Blown-In Cellulose</h3>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-2 text-gray-600"><CheckCircle className="w-4 h-4 text-brand-lime" /> Made from recycled paper products (Eco-friendly)</li>
+                <li className="flex items-center gap-2 text-gray-600"><CheckCircle className="w-4 h-4 text-brand-lime" /> Treated for fire and pest resistance</li>
+                <li className="flex items-center gap-2 text-gray-600"><CheckCircle className="w-4 h-4 text-brand-lime" /> Higher density blocks sound better</li>
+              </ul>
+              <p className="text-gray-500 text-sm">
+                Excellent for maximizing coverage in irregularly shaped attics and tight spaces.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-20 bg-gray-50">
+      {/* The HVAC Connection */}
+      <section className="py-20 bg-brand-blue text-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Installation Process</h2>
+          <div className="max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 backdrop-blur-sm">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4">Why Pair Insulation with HVAC Cleaning?</h2>
+              <p className="text-blue-100 text-lg">
+                The Synergy of Efficiency
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[
-              { num: "1", title: "Assessment", desc: "Evaluate current insulation and R-value needs" },
-              { num: "2", title: "Preparation", desc: "Air seal gaps and prepare attic space" },
-              { num: "3", title: "Installation", desc: "Professional blown-in insulation application" },
-              { num: "4", title: "Verification", desc: "Confirm proper coverage and R-value achieved" },
-            ].map((step) => (
-              <div key={step.num} className="bg-white p-6 rounded-lg shadow text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-lime text-brand-blue font-bold rounded-full mb-4">
-                  {step.num}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+              <div className="flex gap-4">
+                <div className="mt-1 bg-brand-lime rounded-full p-1 h-fit"><ArrowRight className="w-4 h-4 text-brand-blue" /></div>
+                <div>
+                  <strong className="block text-white mb-2">Protect New Equipment</strong>
+                  <p className="text-blue-200 text-sm">If you clean your ducts or install a new AC unit but leave the attic uninsulated, the equipment has to work overtime, shortening its lifespan.</p>
                 </div>
-                <h3 className="font-bold text-brand-blue mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-600">{step.desc}</p>
               </div>
-            ))}
+              <div className="flex gap-4">
+                <div className="mt-1 bg-brand-lime rounded-full p-1 h-fit"><ArrowRight className="w-4 h-4 text-brand-blue" /></div>
+                <div>
+                  <strong className="block text-white mb-2">Prevent Condensation</strong>
+                  <p className="text-blue-200 text-sm">Proper insulation helps regulate temperature differences that cause sweating on ductwork, which leads to mold growth.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-brand-blue text-white">
+      {/* Final CTA Banner */}
+      <section className="bg-brand-lime py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Start Saving on Energy Bills</h2>
-          <p className="text-lg text-blue-100 mb-10 max-w-2xl mx-auto">
-            Professional insulation installation pays for itself. Schedule your energy audit today.
+          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-blue mb-6">
+            Start Saving Money Today
+          </h2>
+          <p className="text-brand-blue/80 text-xl mb-8 font-medium max-w-2xl mx-auto">
+            Call us for a free attic measurement and quote.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={COMPANY_INFO.phoneLink}
-              className="inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold text-lg py-4 px-10 rounded-full transition-transform transform hover:scale-105"
-            >
-              <Phone className="w-6 h-6" />
-              Call {COMPANY_INFO.phone}
-            </a>
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2 border-2 border-brand-lime text-brand-lime hover:bg-brand-lime hover:text-brand-blue font-bold text-lg py-4 px-10 rounded-full transition-colors"
-            >
-              View All Services <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
+          <a
+            href={COMPANY_INFO.phoneLink}
+            className="inline-flex items-center gap-3 bg-brand-blue hover:bg-blue-900 text-white text-2xl font-bold py-4 px-12 rounded-full shadow-xl transition-transform transform hover:-translate-y-1"
+          >
+            <Phone className="w-6 h-6 fill-current" />
+            {COMPANY_INFO.phone}
+          </a>
         </div>
       </section>
     </div>

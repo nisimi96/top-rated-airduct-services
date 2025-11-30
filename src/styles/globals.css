@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #0f2c59;
+  --color-brand-lime: #84cc16;
+  --color-brand-dark: #020617;
+}
 
 @layer base {
   html {
@@ -9,5 +13,35 @@
 
   .pb-safe {
     padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@layer utilities {
+  .text-brand-blue {
+    @apply text-[#0f2c59];
+  }
+
+  .bg-brand-blue {
+    @apply bg-[#0f2c59];
+  }
+
+  .text-brand-lime {
+    @apply text-[#84cc16];
+  }
+
+  .bg-brand-lime {
+    @apply bg-[#84cc16];
+  }
+
+  .border-brand-lime {
+    @apply border-[#84cc16];
+  }
+
+  .text-brand-dark {
+    @apply text-[#020617];
+  }
+
+  .bg-brand-dark {
+    @apply bg-[#020617];
   }
 }

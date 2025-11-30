@@ -1,186 +1,150 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { Phone, ArrowRight, Snowflake, TrendingDown, HomeIcon, CheckCircle } from 'lucide-react'
+import { Phone, Snowflake, ShieldCheck, DollarSign, Ruler, CheckCircle } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'HVAC System Installation in Atlanta | AC & Furnace Replacement',
+  title: 'New HVAC System Installation Atlanta, GA | AC & Furnace Replacement',
   description: 'Professional HVAC installation and replacement. Energy-efficient AC and furnace systems. Expert installation. Free estimates.',
 }
 
 export default function HVACInstallationPage() {
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-r from-brand-blue to-blue-800 text-white">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">HVAC System Installation</h1>
-          <p className="text-xl text-blue-100 max-w-2xl mb-8">
-            Upgrade to a modern, energy-efficient HVAC system. Lower energy bills, improved comfort, and expert installation.
+    <div className="pt-20 bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-brand-blue text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-blue-900/50"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 bg-brand-lime/10 px-4 py-2 rounded-full border border-brand-lime/20 mb-6">
+            <Snowflake className="w-5 h-5 text-brand-lime" />
+            <span className="text-brand-lime font-bold tracking-wide uppercase text-sm">Upgrade & Save</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            New HVAC System <br/>
+            <span className="text-brand-lime">Installation & Replacement</span>
+          </h1>
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed mb-10">
+            Stop paying for repairs on an inefficient unit. Upgrade to a modern, energy-efficient system that keeps your home perfectly comfortable year-round.
           </p>
           <a
             href={COMPANY_INFO.phoneLink}
-            className="inline-flex items-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold text-lg py-3 px-8 rounded-full transition-transform transform hover:scale-105"
+            className="inline-flex items-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold py-4 px-8 rounded-full transition-all shadow-lg hover:shadow-lime-500/20 text-lg"
           >
-            <Phone className="w-5 h-5" />
-            Get Free Estimate
+            <Phone className="w-5 h-5 fill-current" />
+            <span>Get Free Installation Quote</span>
           </a>
         </div>
       </section>
 
-      {/* When to Replace */}
+      {/* Brands & Quality Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">When to Replace Your HVAC System</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue mb-4">Top Brands, Expert Installation</h2>
+            <div className="w-24 h-1 bg-brand-lime mx-auto rounded-full mb-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              We partner with the industry's most reliable manufacturers to bring you systems that last. We install all major brands including Trane, Carrier, Lennox, and Rheem.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-blue-50 p-8 rounded-lg">
-              <h3 className="text-xl font-bold text-brand-blue mb-6">Signs You Need Replacement:</h3>
-              <ul className="space-y-3">
-                {[
-                  "System is 10+ years old",
-                  "Frequent costly repairs",
-                  "Poor heating/cooling performance",
-                  "Inconsistent temperatures",
-                  "Strange noises or odors",
-                  "High energy bills",
-                ].map((sign, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <TrendingDown className="w-5 h-5 text-brand-lime flex-shrink-0" />
-                    <span className="text-gray-700">{sign}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-green-50 p-8 rounded-lg border-2 border-brand-lime">
-              <h3 className="text-xl font-bold text-brand-blue mb-6">Benefits of New Systems:</h3>
-              <ul className="space-y-3">
-                {[
-                  "Up to 30% energy savings",
-                  "Improved comfort & consistency",
-                  "Quieter operation",
-                  "Better air quality",
-                  "Warranty coverage",
-                  "Enhanced reliability",
-                ].map((benefit, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-brand-lime flex-shrink-0" />
-                    <span className="text-gray-700">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+            <div className="text-3xl font-black text-gray-400 hover:text-brand-blue cursor-default">TRANE</div>
+            <div className="text-3xl font-black text-gray-400 hover:text-brand-blue cursor-default">Carrier</div>
+            <div className="text-3xl font-black text-gray-400 hover:text-brand-blue cursor-default">LENNOX</div>
+            <div className="text-3xl font-black text-gray-400 hover:text-brand-blue cursor-default">Rheem</div>
+            <div className="text-3xl font-black text-gray-400 hover:text-brand-blue cursor-default">Goodman</div>
           </div>
         </div>
       </section>
 
-      {/* Brands */}
+      {/* The Importance of Sizing */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Quality Brands We Install</h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {[
-              "Carrier",
-              "Trane",
-              "Lennox",
-              "Rheem",
-              "Goodman",
-              "York",
-            ].map((brand, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-lg shadow text-center">
-                <p className="font-bold text-gray-700">{brand}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Installation Process */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Our Installation Process</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            {[
-              { num: "1", title: "Assessment", desc: "Evaluate your home and needs" },
-              { num: "2", title: "Quote", desc: "Detailed proposal and financing" },
-              { num: "3", title: "Installation", desc: "Professional setup and testing" },
-              { num: "4", title: "Training", desc: "How to use and maintain" },
-              { num: "5", title: "Support", desc: "Ongoing warranty and service" },
-            ].map((step) => (
-              <div key={step.num} className="bg-blue-50 p-6 rounded-lg text-center">
-                <div className="inline-flex items-center justify-center w-10 h-10 bg-brand-lime text-brand-blue font-bold rounded-full mb-3">
-                  {step.num}
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <div className="lg:w-1/2">
+              <div className="bg-white p-8 rounded-3xl shadow-lg border-t-4 border-brand-lime">
+                <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                  <Ruler className="w-8 h-8 text-brand-blue" />
                 </div>
-                <h3 className="font-bold text-brand-blue mb-2 text-sm">{step.title}</h3>
-                <p className="text-xs text-gray-600">{step.desc}</p>
+                <h3 className="text-2xl font-bold text-brand-blue mb-4">Why "Right Sizing" Matters</h3>
+                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                  Bigger isn't always better. An oversized unit will short-cycle, leading to humidity issues and premature failure. An undersized unit will run constantly and never cool your home.
+                </p>
+                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                  We perform a detailed <strong>Manual J Load Calculation</strong> for every installation. This factors in your home's square footage, insulation, windows, and orientation to ensure your new unit fits your home like a glove.
+                </p>
               </div>
-            ))}
+            </div>
+
+            <div className="lg:w-1/2">
+              <h2 className="text-3xl md:text-4xl font-bold text-brand-blue mb-6">Signs You Need a Replacement</h2>
+              <div className="grid grid-cols-1 gap-4">
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 bg-brand-blue rounded-full p-1"><CheckCircle className="w-4 h-4 text-white" /></div>
+                  <div>
+                    <strong className="block text-brand-blue text-lg">Age (10-15+ Years)</strong>
+                    <span className="text-gray-600 text-sm">Systems over a decade old are significantly less efficient than modern units (SEER2 standards).</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 bg-brand-blue rounded-full p-1"><CheckCircle className="w-4 h-4 text-white" /></div>
+                  <div>
+                    <strong className="block text-brand-blue text-lg">Frequent Repairs</strong>
+                    <span className="text-gray-600 text-sm">If you're calling for service every season, the cost of repairs often outweighs the investment in a new unit.</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 bg-brand-blue rounded-full p-1"><CheckCircle className="w-4 h-4 text-white" /></div>
+                  <div>
+                    <strong className="block text-brand-blue text-lg">Rising Energy Bills</strong>
+                    <span className="text-gray-600 text-sm">A steady increase in utility costs without a change in usage indicates efficiency loss.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Why Us */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Why Choose Us for Installation</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {[
-              {
-                icon: HomeIcon,
-                title: "Expert Technicians",
-                desc: "Certified, experienced installers ensure quality workmanship."
-              },
-              {
-                icon: Snowflake,
-                title: "Quality Equipment",
-                desc: "We install premium brands backed by full warranties."
-              },
-              {
-                icon: CheckCircle,
-                title: "Proper Sizing",
-                desc: "Correct system sizing for optimal efficiency and comfort."
-              },
-              {
-                icon: TrendingDown,
-                title: "Energy Savings",
-                desc: "Modern systems reduce energy consumption significantly."
-              },
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-lg shadow-lg">
-                <item.icon className="w-10 h-10 text-brand-lime mb-4" />
-                <h3 className="text-lg font-bold text-brand-blue mb-3">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
+      {/* Warranties & Financing */}
       <section className="py-20 bg-brand-blue text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready for a New HVAC System?</h2>
-          <p className="text-lg text-blue-100 mb-10 max-w-2xl mx-auto">
-            Expert installation with premium brands and energy-efficient technology.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={COMPANY_INFO.phoneLink}
-              className="inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold text-lg py-4 px-10 rounded-full transition-transform transform hover:scale-105"
-            >
-              <Phone className="w-6 h-6" />
-              Call {COMPANY_INFO.phone}
-            </a>
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2 border-2 border-brand-lime text-brand-lime hover:bg-brand-lime hover:text-brand-blue font-bold text-lg py-4 px-10 rounded-full transition-colors"
-            >
-              View All Services <ArrowRight className="w-5 h-5" />
-            </Link>
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/15 transition-colors">
+              <ShieldCheck className="w-12 h-12 text-brand-lime mb-4" />
+              <h3 className="text-2xl font-bold mb-3">Industry-Leading Warranties</h3>
+              <p className="text-blue-100 leading-relaxed">
+                Peace of mind comes standard. Most of our systems come with a 10-year manufacturer parts warranty. We also back our craftsmanship with comprehensive labor warranties, so you're never left paying for our mistake.
+              </p>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/15 transition-colors">
+              <DollarSign className="w-12 h-12 text-brand-lime mb-4" />
+              <h3 className="text-2xl font-bold mb-3">Flexible Financing</h3>
+              <p className="text-blue-100 leading-relaxed">
+                Don't let budget hold you back from comfort. We offer competitive financing options with low monthly payments for qualified buyers.
+                <br/><span className="text-xs text-blue-300 mt-2 block">*Subject to credit approval. Ask for details.</span>
+              </p>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Final CTA Banner */}
+      <section className="bg-brand-lime py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-blue mb-6">
+            Get Your Free Estimate Today
+          </h2>
+          <p className="text-brand-blue/80 text-xl mb-8 font-medium max-w-2xl mx-auto">
+            Call now to discuss your replacement options with a certified expert.
+          </p>
+          <a
+            href={COMPANY_INFO.phoneLink}
+            className="inline-flex items-center gap-3 bg-brand-blue hover:bg-blue-900 text-white text-2xl font-bold py-4 px-12 rounded-full shadow-xl transition-transform transform hover:-translate-y-1"
+          >
+            <Phone className="w-6 h-6 fill-current" />
+            {COMPANY_INFO.phone}
+          </a>
         </div>
       </section>
     </div>
