@@ -71,8 +71,9 @@ const WhyChooseUs: React.FC = () => {
                 <Link
                     href="/why-us"
                     className="inline-flex items-center justify-center gap-2 border-2 border-brand-lime text-brand-lime hover:bg-brand-lime hover:text-brand-blue font-bold text-lg py-3 px-8 rounded-full transition-colors"
+                    title="Learn more about why choose us"
                 >
-                    Learn More <ArrowRight className="w-5 h-5" />
+                    Learn More About Us <ArrowRight className="w-5 h-5" />
                 </Link>
             </div>
           </div>
