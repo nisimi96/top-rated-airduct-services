@@ -32,7 +32,8 @@
       "Bash(git ls-tree:*)",
       "Bash(node generate-favicon.js:*)",
       "Skill(accessibility)",
-      "Skill(seo)"
+      "Skill(seo)",
+      "Bash(npm run compress-images:*)"
     ],
     "deny": [],
     "ask": []
