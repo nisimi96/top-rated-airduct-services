@@ -30,9 +30,9 @@ const signs = [
 
 export default function MoldTestingPage() {
   return (
-    <div className="pt-16 bg-gray-50">
+    <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center" style={{backgroundImage: 'url(/images/Mold.webp)'}}>
+      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center" style={{backgroundImage: 'url(/images/Mold.webp)', paddingTop: 'calc(100px + 5rem)'}}>
         <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
         <div className="container mx-auto px-4 text-center relative z-10">

@@ -21,7 +21,7 @@ export default function WhyUsPage() {
     return () => clearInterval(interval)
   }, [])
   return (
-    <div className="pt-16 bg-gray-50">
+    <div className="bg-gray-50" style={{paddingTop: 'calc(100px + 5rem)'}}>
       {/* Page Header */}
       <section className="bg-white text-brand-blue py-16 md:py-20 border-b border-gray-200">
         <div className="container mx-auto px-4 text-center">
