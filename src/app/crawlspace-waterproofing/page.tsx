@@ -13,10 +13,19 @@ export default function CrawlspaceWaterproofingPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center" style={{backgroundImage: 'url(/images/hero-bg.webp)', paddingTop: 'calc(100px + 5rem)'}}>
-        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
+      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden pt-20 md:pt-20 lg:pt-20" style={{paddingTop: 'calc(100px + 5rem)'}}>
+        <Image
+          src="/images/hero-bg.webp"
+          alt="Basement and crawlspace waterproofing service"
+          fill
+          className="object-cover -z-20"
+          priority
+          sizes="100vw"
+          quality={85}
+        />
+        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent z-10"></div>
+        <div className="container mx-auto px-4 text-center relative z-20">
           <div className="inline-flex items-center gap-2 bg-brand-lime/10 px-4 py-2 rounded-full border border-brand-lime/20 mb-6">
             <Droplets className="w-5 h-5 text-brand-lime" />
             <span className="text-brand-lime font-bold tracking-wide uppercase text-sm">Moisture & Humidity Control</span>

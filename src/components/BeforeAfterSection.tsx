@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { Star } from 'lucide-react'
 
@@ -31,11 +32,14 @@ export default function BeforeAfterSection() {
           {/* Before */}
           <div className="text-center">
             <p className="text-base font-bold text-gray-700 mb-2">Before</p>
-            <div className="rounded-2xl overflow-hidden shadow-lg h-48 md:h-64">
-              <img
+            <div className="rounded-2xl overflow-hidden shadow-lg relative h-48 md:h-64">
+              <Image
                 src={BEFORE_AFTER_PAIRS[currentIndex].before}
                 alt="Dirty air duct before cleaning"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={80}
               />
             </div>
           </div>
@@ -43,11 +47,14 @@ export default function BeforeAfterSection() {
           {/* After */}
           <div className="text-center">
             <p className="text-base font-bold text-brand-lime mb-2">After</p>
-            <div className="rounded-2xl overflow-hidden shadow-lg h-48 md:h-64">
-              <img
+            <div className="rounded-2xl overflow-hidden shadow-lg relative h-48 md:h-64">
+              <Image
                 src={BEFORE_AFTER_PAIRS[currentIndex].after}
                 alt="Clean air duct after professional cleaning"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={80}
               />
             </div>
           </div>

@@ -13,10 +13,19 @@ export default function CommercialServicesPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center" style={{backgroundImage: 'url(/images/hero-bg.webp)', paddingTop: 'calc(100px + 5rem)'}}>
-        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
+      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden pt-20 md:pt-20 lg:pt-20" style={{paddingTop: 'calc(100px + 5rem)'}}>
+        <Image
+          src="/images/hero-bg.webp"
+          alt="Commercial HVAC cleaning services"
+          fill
+          className="object-cover -z-20"
+          priority
+          sizes="100vw"
+          quality={85}
+        />
+        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent z-10"></div>
+        <div className="container mx-auto px-4 text-center relative z-20">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
             Commercial HVAC <br/>
             <span className="text-brand-lime">Services</span>

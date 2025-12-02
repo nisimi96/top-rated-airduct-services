@@ -1,10 +1,20 @@
 import React from 'react';
+import Image from 'next/image';
 import { Phone, CheckCircle, Star } from 'lucide-react';
 import { COMPANY_INFO } from '@/lib/constants';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-20 md:pt-20 lg:pt-20 bg-cover bg-center" style={{backgroundImage: 'url(/images/hero-bg.webp)', paddingTop: 'calc(100px + 5rem)'}}>
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-20 md:pt-20 lg:pt-20 overflow-hidden" style={{paddingTop: 'calc(100px + 5rem)'}}>
+      <Image
+        src="/images/hero-bg.webp"
+        alt="Professional air duct cleaning service background"
+        fill
+        className="object-cover"
+        priority
+        sizes="100vw"
+        quality={85}
+      />
       {/* Overlay */}
       <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 const BEFORE_AFTER_PAIRS = [
@@ -32,11 +33,14 @@ export default function BeforeAfterCarousel() {
           {/* Before */}
           <div className="text-center">
             <p className="text-xl font-bold text-gray-700 mb-4">Before</p>
-            <div className="rounded-2xl overflow-hidden shadow-lg">
-              <img
+            <div className="rounded-2xl overflow-hidden shadow-lg relative w-full" style={{paddingBottom: '66.67%'}}>
+              <Image
                 src={pair.before}
                 alt="Dirty air duct before cleaning"
-                className="w-full h-auto object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={80}
               />
             </div>
           </div>
@@ -44,11 +48,14 @@ export default function BeforeAfterCarousel() {
           {/* After */}
           <div className="text-center">
             <p className="text-xl font-bold text-brand-lime mb-4">After</p>
-            <div className="rounded-2xl overflow-hidden shadow-lg">
-              <img
+            <div className="rounded-2xl overflow-hidden shadow-lg relative w-full" style={{paddingBottom: '66.67%'}}>
+              <Image
                 src={pair.after}
                 alt="Clean air duct after professional cleaning"
-                className="w-full h-auto object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={80}
               />
             </div>
           </div>
