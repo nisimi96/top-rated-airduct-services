@@ -30,7 +30,9 @@
       "Bash(git branch:*)",
       "Bash(git push:*)",
       "Bash(git ls-tree:*)",
-      "Bash(node generate-favicon.js:*)"
+      "Bash(node generate-favicon.js:*)",
+      "Skill(accessibility)",
+      "Skill(seo)"
     ],
     "deny": [],
     "ask": []

@@ -6,10 +6,24 @@ import { COMPANY_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Certified Air Duct Cleaning in Atlanta | Residential & Commercial HVAC',
-  description: 'Expert air duct cleaning service in Atlanta. Remove allergens, dust, and improve indoor air quality. NADCA certified. Free estimates.',
+  description: 'Professional air duct cleaning in Atlanta. NADCA certified technicians remove allergens, dust, and improve indoor air quality. Free estimates available.',
+  keywords: ['air duct cleaning', 'HVAC cleaning', 'indoor air quality', 'allergen removal', 'Atlanta'],
   openGraph: {
+    title: 'Professional Air Duct Cleaning in Atlanta | NADCA Certified',
+    description: 'Expert air duct cleaning service in Atlanta. Remove allergens and dust. NADCA certified. Free estimates.',
+    images: [
+      {
+        url: 'https://topratedairduct.com/images/air-duct-cleaning-og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Professional Air Duct Cleaning Service'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
     title: 'Professional Air Duct Cleaning in Atlanta',
-    description: 'Expert air duct cleaning service in Atlanta',
+    description: 'NADCA certified air duct cleaning service. Remove allergens and improve air quality.'
   }
 }
 

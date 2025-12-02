@@ -11,25 +11,69 @@ const BEFORE_AFTER_PAIRS = [
 
 export default function BeforeAfterCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
+    // Check if user prefers reduced motion
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches)
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  useEffect(() => {
+    // Only auto-rotate if user doesn't prefer reduced motion
+    if (prefersReducedMotion) return
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % BEFORE_AFTER_PAIRS.length)
     }, 5000) // Change every 5 seconds
 
     return () => clearInterval(interval)
-  }, [])
+  }, [prefersReducedMotion])
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    switch (e.key) {
+      case 'ArrowLeft':
+        e.preventDefault()
+        setCurrentIndex((prev) => (prev - 1 + BEFORE_AFTER_PAIRS.length) % BEFORE_AFTER_PAIRS.length)
+        break
+      case 'ArrowRight':
+        e.preventDefault()
+        setCurrentIndex((prev) => (prev + 1) % BEFORE_AFTER_PAIRS.length)
+        break
+      case 'Home':
+        e.preventDefault()
+        setCurrentIndex(0)
+        break
+      case 'End':
+        e.preventDefault()
+        setCurrentIndex(BEFORE_AFTER_PAIRS.length - 1)
+        break
+    }
+  }
 
   const pair = BEFORE_AFTER_PAIRS[currentIndex]
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-white" aria-label="Before and after carousel">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-brand-blue text-center mb-12">
           See the Difference We Make
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+          onKeyDown={handleKeyDown}
+          role="region"
+          aria-label="Before and after image carousel"
+          aria-live="polite"
+        >
           {/* Before */}
           <div className="text-center">
             <p className="text-xl font-bold text-gray-700 mb-4">Before</p>
@@ -62,15 +106,16 @@ export default function BeforeAfterCarousel() {
         </div>
 
         {/* Progress Indicators */}
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-2 mt-8" role="group" aria-label="Carousel slide selectors">
           {BEFORE_AFTER_PAIRS.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-3 h-3 rounded-full transition-colors ${
-                index === currentIndex ? 'bg-brand-lime' : 'bg-gray-300'
+                index === currentIndex ? 'bg-brand-lime' : 'bg-gray-300 hover:bg-gray-400'
               }`}
-              aria-label={`Go to pair ${index + 1}`}
+              aria-label={`Go to before and after pair ${index + 1}`}
+              aria-current={index === currentIndex ? 'true' : undefined}
             />
           ))}
         </div>

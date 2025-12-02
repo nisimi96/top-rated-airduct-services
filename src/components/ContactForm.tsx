@@ -141,7 +141,7 @@ export default function ContactForm() {
 
         {/* Form - Only show when authenticated */}
         {isAuthenticated ? (
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
             {/* Name Field */}
             <div>
               <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -152,11 +152,15 @@ export default function ContactForm() {
                 type="text"
                 id="name"
                 placeholder="John Doe"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-blue-50 transition-colors bg-white"
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
+                  errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
+                }`}
+                aria-invalid={errors.name ? 'true' : 'false'}
+                aria-describedby={errors.name ? 'name-error' : undefined}
               />
               <p className="text-xs text-gray-500 mt-1">Pre-filled from your account. Feel free to edit.</p>
               {errors.name && (
-                <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
+                <p id="name-error" className="text-red-600 text-sm mt-1" role="alert">{errors.name.message}</p>
               )}
             </div>
 
@@ -170,11 +174,15 @@ export default function ContactForm() {
                 type="email"
                 id="email"
                 placeholder="john@example.com"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-blue-50 transition-colors bg-white"
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
+                  errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
+                }`}
+                aria-invalid={errors.email ? 'true' : 'false'}
+                aria-describedby={errors.email ? 'email-error' : undefined}
               />
               <p className="text-xs text-gray-500 mt-1">Pre-filled from your account. Feel free to edit.</p>
               {errors.email && (
-                <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+                <p id="email-error" className="text-red-600 text-sm mt-1" role="alert">{errors.email.message}</p>
               )}
             </div>
 
@@ -188,10 +196,14 @@ export default function ContactForm() {
                 type="tel"
                 id="phone"
                 placeholder="(770) 123-4567"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-blue-50 transition-colors bg-white"
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
+                  errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
+                }`}
+                aria-invalid={errors.phone ? 'true' : 'false'}
+                aria-describedby={errors.phone ? 'phone-error' : undefined}
               />
               {errors.phone && (
-                <p className="text-red-600 text-sm mt-1">{errors.phone.message}</p>
+                <p id="phone-error" className="text-red-600 text-sm mt-1" role="alert">{errors.phone.message}</p>
               )}
             </div>
 
@@ -205,10 +217,14 @@ export default function ContactForm() {
                 type="text"
                 id="propertyAddress"
                 placeholder="123 Main St, Atlanta, GA 30303"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-blue-50 transition-colors bg-white"
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
+                  errors.propertyAddress ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
+                }`}
+                aria-invalid={errors.propertyAddress ? 'true' : 'false'}
+                aria-describedby={errors.propertyAddress ? 'propertyAddress-error' : undefined}
               />
               {errors.propertyAddress && (
-                <p className="text-red-600 text-sm mt-1">{errors.propertyAddress.message}</p>
+                <p id="propertyAddress-error" className="text-red-600 text-sm mt-1" role="alert">{errors.propertyAddress.message}</p>
               )}
             </div>
 
@@ -220,7 +236,11 @@ export default function ContactForm() {
               <select
                 {...register('service')}
                 id="service"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-blue-50 transition-colors bg-white"
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
+                  errors.service ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
+                }`}
+                aria-invalid={errors.service ? 'true' : 'false'}
+                aria-describedby={errors.service ? 'service-error' : undefined}
               >
                 <option value="">Select a service...</option>
                 <option value="air-duct-cleaning">Residential Air Duct Cleaning</option>
@@ -234,7 +254,7 @@ export default function ContactForm() {
                 <option value="other">Other</option>
               </select>
               {errors.service && (
-                <p className="text-red-600 text-sm mt-1">{errors.service.message}</p>
+                <p id="service-error" className="text-red-600 text-sm mt-1" role="alert">{errors.service.message}</p>
               )}
             </div>
 
@@ -248,17 +268,21 @@ export default function ContactForm() {
                 id="message"
                 rows={5}
                 placeholder="Tell us about your needs..."
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-blue-50 transition-colors resize-none bg-white"
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors resize-none bg-white ${
+                  errors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
+                }`}
+                aria-invalid={errors.message ? 'true' : 'false'}
+                aria-describedby={errors.message ? 'message-error' : undefined}
               />
               {errors.message && (
-                <p className="text-red-600 text-sm mt-1">{errors.message.message}</p>
+                <p id="message-error" className="text-red-600 text-sm mt-1" role="alert">{errors.message.message}</p>
               )}
             </div>
 
             {/* Status Messages */}
             {submitStatus === 'success' && (
-              <div className="bg-green-50 border-2 border-green-200 text-green-700 p-4 rounded-lg flex items-start gap-3">
-                <MessageSquare className="w-5 h-5 mt-0.5 flex-shrink-0" />
+              <div className="bg-green-50 border-2 border-green-200 text-green-700 p-4 rounded-lg flex items-start gap-3" role="status" aria-live="polite" aria-atomic="true">
+                <MessageSquare className="w-5 h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
                   <p className="font-semibold">Thank you! Your message has been sent.</p>
                   <p className="text-sm">We will get back to you within 24 hours.</p>
@@ -267,8 +291,8 @@ export default function ContactForm() {
             )}
 
             {submitStatus === 'error' && (
-              <div className="bg-red-50 border-2 border-red-200 text-red-700 p-4 rounded-lg flex items-start gap-3">
-                <MessageSquare className="w-5 h-5 mt-0.5 flex-shrink-0" />
+              <div className="bg-red-50 border-2 border-red-200 text-red-700 p-4 rounded-lg flex items-start gap-3" role="alert" aria-live="assertive" aria-atomic="true">
+                <MessageSquare className="w-5 h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
                   <p className="font-semibold">Error sending message</p>
                   <p className="text-sm">Please try again or call us directly.</p>

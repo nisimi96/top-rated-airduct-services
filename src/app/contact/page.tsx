@@ -5,8 +5,26 @@ import { COMPANY_INFO } from '@/lib/constants'
 import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact Top Rated Air Duct Cleaning: ' + COMPANY_INFO.phone,
-  description: 'Get in touch with Top Rated Air Duct Cleaning. Call us for free estimates, questions, or to schedule service.',
+  title: 'Contact Top Rated Air Duct Cleaning | ' + COMPANY_INFO.phone,
+  description: 'Contact Top Rated Air Duct Cleaning for free estimates and service scheduling. Call 770-741-0615 or fill out our secure contact form.',
+  keywords: ['contact air duct cleaning', 'free estimate', 'HVAC service', 'Atlanta'],
+  openGraph: {
+    title: 'Contact Us for Free Air Duct Cleaning Estimates',
+    description: 'Book your air duct cleaning service today. Free estimates available.',
+    images: [
+      {
+        url: 'https://topratedairduct.com/images/contact-og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Contact Top Rated Air Duct Cleaning'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Top Rated Air Duct Cleaning',
+    description: 'Get your free estimate. Call 770-741-0615 or fill out our contact form.'
+  }
 }
 
 export default function ContactPage() {

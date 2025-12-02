@@ -5,8 +5,26 @@ import { Phone, Flame, Zap, Clock, AlertTriangle, Thermometer, ShieldCheck, Chec
 import { COMPANY_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Professional Dryer Vent Cleaning Atlanta | Fire Prevention & Safety',
-  description: 'Expert dryer vent cleaning service in Atlanta. Prevent lint buildup and fire hazards. Improve dryer efficiency. Free estimates.',
+  title: 'Professional Dryer Vent Cleaning in Atlanta | Fire Safety & Prevention',
+  description: 'Professional dryer vent cleaning in Atlanta. Remove lint buildup, prevent fire hazards, improve efficiency. Certified technicians. Free estimates.',
+  keywords: ['dryer vent cleaning', 'lint removal', 'fire prevention', 'dryer safety', 'Atlanta'],
+  openGraph: {
+    title: 'Expert Dryer Vent Cleaning Services in Atlanta',
+    description: 'Professional dryer vent cleaning to prevent fire hazards and improve efficiency. Free estimates available.',
+    images: [
+      {
+        url: 'https://topratedairduct.com/images/dryer-vent-og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Professional Dryer Vent Cleaning Service'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Professional Dryer Vent Cleaning Atlanta',
+    description: 'Expert dryer vent cleaning service. Prevent fire hazards and improve dryer efficiency.'
+  }
 }
 
 const signs = [
