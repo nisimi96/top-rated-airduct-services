@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { SERVICES_LIST } from '@/lib/constants';
+import { SERVICES_LIST, DETAILED_SERVICES } from '@/lib/constants';
 
 const Services: React.FC = () => {
   return (
@@ -22,9 +22,11 @@ const Services: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {SERVICES_LIST.map((service, index) => (
+          {SERVICES_LIST.map((service, index) => {
+            const detailedService = DETAILED_SERVICES[index];
+            return (
             <Link
-              href="/services"
+              href={detailedService?.link || "/services"}
               key={index}
               className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-brand-lime group hover:-translate-y-1 block"
             >
@@ -36,7 +38,8 @@ const Services: React.FC = () => {
                 {service.description}
               </p>
             </Link>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-12 text-center md:hidden">
