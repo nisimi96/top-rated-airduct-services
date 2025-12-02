@@ -1,11 +1,10 @@
 import React from 'react';
-import Image from 'next/image';
 import { Phone, CheckCircle, Star } from 'lucide-react';
 import { COMPANY_INFO } from '@/lib/constants';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-20 bg-cover bg-center" style={{backgroundImage: 'url(/images/hero-bg.webp)'}}>
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-20 md:pt-20 lg:pt-20 bg-cover bg-center" style={{backgroundImage: 'url(/images/hero-bg.webp)', paddingTop: 'calc(100px + 5rem)'}}>
       {/* Overlay */}
       <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
