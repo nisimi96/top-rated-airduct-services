@@ -27,12 +27,12 @@ const Footer: React.FC = () => {
 
           {/* Quick Contact - Center Focused */}
           <div className="col-span-1">
-            <h4 className="text-lg font-bold text-white mb-6 uppercase tracking-wider">Contact Us</h4>
+            <h2 className="text-lg font-bold text-white mb-6 uppercase tracking-wider">Contact Us</h2>
             <div className="flex flex-col gap-4">
               <a href={COMPANY_INFO.phoneLink} className="flex items-start gap-4 group">
                 <Phone className="w-6 h-6 text-brand-lime mt-1 group-hover:scale-110 transition-transform" />
                 <div>
-                  <span className="block text-gray-400 text-sm">Phone (24/7)</span>
+                  <span className="block text-gray-300 text-sm">Phone (24/7)</span>
                   <span className="text-xl font-bold text-white group-hover:text-brand-lime transition-colors">{COMPANY_INFO.phone}</span>
                 </div>
               </a>
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
               <div className="flex items-start gap-4">
                 <Mail className="w-6 h-6 text-brand-lime mt-1" />
                 <div>
-                  <span className="block text-gray-400 text-sm">Email</span>
+                  <span className="block text-gray-300 text-sm">Email</span>
                   <span className="text-white">{COMPANY_INFO.email}</span>
                 </div>
               </div>
@@ -49,11 +49,11 @@ const Footer: React.FC = () => {
 
           {/* Location */}
           <div className="col-span-1">
-            <h4 className="text-lg font-bold text-white mb-6 uppercase tracking-wider">Location</h4>
+            <h2 className="text-lg font-bold text-white mb-6 uppercase tracking-wider">Location</h2>
             <div className="flex items-start gap-4">
                 <MapPin className="w-6 h-6 text-brand-lime mt-1 shrink-0" />
                 <div>
-                  <span className="block text-gray-400 text-sm mb-1">Office Address</span>
+                  <span className="block text-gray-300 text-sm mb-1">Office Address</span>
                   <address className="text-white not-italic leading-relaxed">
                     1880 West Oak Parkway<br/>
                     Unit 104, Office 104<br/>

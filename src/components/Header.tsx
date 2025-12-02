@@ -116,7 +116,7 @@ const Header: React.FC = () => {
         <div className="hidden md:block">
           <a
             href={COMPANY_INFO.phoneLink}
-            className="flex items-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold py-2.5 px-6 rounded-full transition-transform transform hover:scale-105 shadow-md"
+            className="flex items-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-md min-h-11"
           >
             <Phone className="w-5 h-5 fill-current" />
             <span>{COMPANY_INFO.phone}</span>
@@ -195,7 +195,7 @@ const Header: React.FC = () => {
             ))}
              <a
                 href={COMPANY_INFO.phoneLink}
-                className="flex items-center justify-center gap-2 bg-brand-lime text-brand-blue font-bold py-4 px-6 rounded-xl mt-4"
+                className="flex items-center justify-center gap-2 bg-brand-lime text-brand-blue font-bold py-4 px-6 rounded-xl mt-4 min-h-11"
               >
                 <Phone className="w-6 h-6 fill-current" />
                 <span>Call {COMPANY_INFO.phone}</span>
