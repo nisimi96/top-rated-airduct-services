@@ -52,9 +52,6 @@ const Hero: React.FC = () => {
             <Phone className="w-6 h-6 fill-current" />
             Call For Free Estimate
           </a>
-          <div className="text-white text-lg font-medium">
-            or Call: <a href={COMPANY_INFO.phoneLink} className="hover:text-brand-lime transition-colors underline decoration-brand-lime decoration-2 underline-offset-4">{COMPANY_INFO.phone}</a>
-          </div>
         </div>
 
         {/* Trust Signals Footer in Hero */}
