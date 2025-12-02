@@ -1,5 +1,6 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Wind } from 'lucide-react';
+import Image from 'next/image';
+import { Phone, Mail, MapPin } from 'lucide-react';
 import { COMPANY_INFO } from '@/lib/constants';
 
 const Footer: React.FC = () => {
@@ -11,13 +12,13 @@ const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="col-span-1">
             <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 bg-brand-lime rounded-full flex items-center justify-center">
-                    <Wind className="text-brand-blue w-5 h-5" />
-                </div>
-                <div className="flex flex-col">
-                    <span className="text-white font-bold leading-none">TOP RATED</span>
-                    <span className="text-brand-lime text-xs font-semibold tracking-widest">AIR DUCT CLEANING</span>
-                </div>
+                <Image
+                  src="/images/top-airduct-logo.png"
+                  alt="Top Rated Air Duct Cleaning Logo"
+                  width={90}
+                  height={90}
+                  className="h-20 w-auto"
+                />
             </div>
             <p className="text-gray-400 mb-6">
               Restoring healthy air to Atlanta homes and businesses. Licensed, insured, and committed to excellence.

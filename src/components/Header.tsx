@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Phone, Menu, X, Wind, ChevronDown } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown } from 'lucide-react';
 import { COMPANY_INFO, NAVIGATION_LINKS, DETAILED_SERVICES } from '@/lib/constants';
 
 const Header: React.FC = () => {
@@ -45,17 +46,13 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         {/* Logo Area */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-brand-lime rounded-full flex items-center justify-center">
-            <Wind className="text-brand-blue w-6 h-6" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-white font-bold text-lg md:text-xl leading-none tracking-tight">
-              TOP RATED
-            </span>
-            <span className="text-brand-lime text-xs md:text-sm font-semibold tracking-widest">
-              AIR DUCT CLEANING
-            </span>
-          </div>
+          <Image
+            src="/images/top-airduct-logo.png"
+            alt="Top Rated Air Duct Cleaning Logo"
+            width={120}
+            height={120}
+            className="h-24 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}
