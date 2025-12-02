@@ -1,156 +1,150 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { Phone, Mail, MapPin, Clock, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
+import { Phone, Mail, Clock, Building2 } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
+import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Top Rated Air Duct Cleaning - Atlanta',
+  title: 'Contact Top Rated Air Duct Cleaning: ' + COMPANY_INFO.phone,
   description: 'Get in touch with Top Rated Air Duct Cleaning. Call us for free estimates, questions, or to schedule service.',
 }
 
 export default function ContactPage() {
   return (
-    <div className="pt-20">
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-r from-brand-blue to-blue-800 text-white">
+    <div className="pt-20 bg-gray-50">
+      {/* Introduction Header */}
+      <section className="bg-white text-brand-blue py-16 border-b border-gray-200">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Get In Touch</h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Have questions? Ready to schedule service? We're here to help. Contact us today for a free estimate.
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight animate-fade-in-up">
+            Book Your Service Now
+          </h1>
+          <p className="text-xl text-gray-600 font-light animate-fade-in-up">
+            Speak directly to an expert for immediate assistance and a free quote.
           </p>
         </div>
       </section>
 
-      {/* Contact Methods */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Contact Information</h2>
+      {/* Primary CTA - The Phone Number */}
+      <section className="py-16 md:py-24 bg-brand-blue relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            <div className="bg-blue-50 p-8 rounded-lg text-center">
-              <Phone className="w-12 h-12 text-brand-lime mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-brand-blue mb-2">Phone</h3>
-              <a href={COMPANY_INFO.phoneLink} className="text-xl font-bold text-brand-lime hover:underline">
-                {COMPANY_INFO.phone}
-              </a>
-              <p className="text-sm text-gray-600 mt-2">24/7 Available</p>
-            </div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <span className="text-blue-200 font-bold tracking-[0.2em] uppercase text-sm mb-6 block">Call Us Today</span>
 
-            <div className="bg-blue-50 p-8 rounded-lg text-center">
-              <Mail className="w-12 h-12 text-brand-lime mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-brand-blue mb-2">Email</h3>
-              <a href={`mailto:${COMPANY_INFO.email}`} className="text-lg font-bold text-brand-lime hover:underline">
-                {COMPANY_INFO.email}
-              </a>
-              <p className="text-sm text-gray-600 mt-2">Response within 24hrs</p>
-            </div>
+          <a
+            href={COMPANY_INFO.phoneLink}
+            className="inline-block text-5xl md:text-7xl lg:text-8xl font-black text-brand-lime hover:text-white transition-colors tracking-tighter drop-shadow-lg"
+          >
+            {COMPANY_INFO.phone}
+          </a>
 
-            <div className="bg-blue-50 p-8 rounded-lg text-center">
-              <MapPin className="w-12 h-12 text-brand-lime mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-brand-blue mb-2">Address</h3>
-              <p className="font-bold text-gray-700">
-                1880 West Oak Parkway<br />
-                Marietta, GA 30062
-              </p>
-            </div>
+          <p className="mt-8 text-blue-100 text-lg max-w-xl mx-auto">
+            No automated loops. No waiting. Just direct access to our scheduling team.
+          </p>
 
-            <div className="bg-blue-50 p-8 rounded-lg text-center">
-              <Clock className="w-12 h-12 text-brand-lime mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-brand-blue mb-2">Hours</h3>
-              <p className="text-gray-700 text-sm">
-                Mon - Fri: 7am - 7pm<br />
-                Sat - Sun: 8am - 6pm
-              </p>
-            </div>
+          <div className="mt-8 inline-block bg-brand-lime text-brand-blue font-bold px-6 py-2 rounded-full text-sm">
+            Faster Response Time Than Email
           </div>
         </div>
       </section>
 
-      {/* Service Area Info */}
-      <section className="py-20 bg-gray-50">
+      {/* Contact Form Section */}
+      <section className="py-20 bg-white border-b border-gray-200">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Service Area</h2>
-
-          <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow">
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              We proudly serve Atlanta and a 60-mile radius around the metro area. This includes Marietta, Alpharetta, Roswell, Decatur, Lawrenceville, and many surrounding communities.
-            </p>
-            <p className="text-gray-600 mb-6">
-              If you're unsure whether your location is within our service area, give us a call. We likely serve your neighborhood!
-            </p>
-            <Link
-              href="/service-area"
-              className="inline-flex items-center gap-2 text-brand-blue font-bold hover:text-brand-lime transition-colors"
-            >
-              View Complete Service Map <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          <ContactForm />
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Secondary Contact Info & Details */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">Frequently Asked Questions</h2>
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
 
-          <div className="max-w-3xl mx-auto space-y-6">
-            {[
-              {
-                q: "How quickly can you schedule service?",
-                a: "We typically schedule appointments within 2-3 days. For urgent cases like dryer vent concerns, we can often arrange same-day service."
-              },
-              {
-                q: "Do you offer free estimates?",
-                a: "Yes! We provide free, no-obligation estimates for all services. Call us or request one online to get started."
-              },
-              {
-                q: "What's included in your service?",
-                a: "Service includes thorough inspection, professional cleaning with state-of-the-art equipment, and verification of results. We also provide a detailed report."
-              },
-              {
-                q: "Are you licensed and insured?",
-                a: "Yes, we are fully licensed, insured, and NADCA certified. All our technicians undergo regular training and background checks."
-              },
-              {
-                q: "What areas do you serve?",
-                a: "We serve Atlanta and a 60-mile radius including Marietta, Alpharetta, Roswell, Decatur, and many surrounding areas. Check our service map for details."
-              },
-              {
-                q: "Do you offer financing options?",
-                a: "Yes, we work with several financing partners to make our services affordable. Ask about flexible payment plans when you call."
-              },
-            ].map((faq, idx) => (
-              <div key={idx} className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-bold text-brand-blue mb-3">{faq.q}</h3>
-                <p className="text-gray-700">{faq.a}</p>
+            {/* Information Column */}
+            <div className="space-y-10">
+              <h2 className="text-3xl font-bold text-brand-blue">Contact Details</h2>
+
+              {/* Email */}
+              <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                <div className="w-12 h-12 bg-blue-100 text-brand-blue rounded-full flex items-center justify-center shrink-0">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-brand-blue mb-1">Email Us</h3>
+                  <a href={`mailto:${COMPANY_INFO.email}`} className="text-gray-600 hover:text-brand-lime transition-colors">
+                    {COMPANY_INFO.email}
+                  </a>
+                  <p className="text-xs text-gray-400 mt-2">For non-urgent inquiries.</p>
+                </div>
               </div>
-            ))}
+
+              {/* Hours */}
+              <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                <div className="w-12 h-12 bg-blue-100 text-brand-blue rounded-full flex items-center justify-center shrink-0">
+                  <Clock className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-brand-blue mb-1">Operating Hours</h3>
+                  <ul className="text-gray-600 space-y-1 text-sm">
+                    <li className="flex justify-between w-48"><span>Sun - Fri:</span> <span>8:00 AM – 5:00 PM</span></li>
+                    <li className="flex justify-between w-48"><span>Saturday:</span> <span>Closed</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Address */}
+              <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                <div className="w-12 h-12 bg-blue-100 text-brand-blue rounded-full flex items-center justify-center shrink-0">
+                  <Building2 className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-brand-blue mb-1">Office Location</h3>
+                  <address className="text-gray-600 not-italic mb-3">
+                    1880 West Oak Parkway<br/>
+                    Unit 104, Office 104<br/>
+                    Marietta, GA 30062
+                  </address>
+                  <div className="text-xs text-amber-600 font-medium bg-amber-50 px-3 py-2 rounded-lg border border-amber-100 inline-block">
+                    *Administrative Office. No equipment storage or walk-in service.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Map Column */}
+            <div className="h-full min-h-[400px] relative">
+              <div className="h-full rounded-3xl overflow-hidden shadow-lg border border-gray-200 relative group">
+                <Image
+                  src="/images/atlanta-map.webp"
+                  alt="Atlanta Service Area Map"
+                  fill
+                  className="w-full h-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-brand-blue text-white">
+      {/* Final CTA Banner */}
+      <section className="bg-brand-lime py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
-          <p className="text-lg text-blue-100 mb-10 max-w-2xl mx-auto">
-            Contact us today for a free estimate and discover why thousands of families trust us with their HVAC needs.
+          <h2 className="text-3xl md:text-4xl font-extrabold text-brand-blue mb-6">
+            Ready to Breathe Easier?
+          </h2>
+          <p className="text-brand-blue/80 text-xl mb-8 font-medium max-w-2xl mx-auto">
+            Don't wait. Call now to secure your spot for the week.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={COMPANY_INFO.phoneLink}
-              className="inline-flex items-center justify-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold text-lg py-4 px-10 rounded-full transition-transform transform hover:scale-105"
-            >
-              <Phone className="w-6 h-6" />
-              Call {COMPANY_INFO.phone}
-            </a>
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2 border-2 border-brand-lime text-brand-lime hover:bg-brand-lime hover:text-brand-blue font-bold text-lg py-4 px-10 rounded-full transition-colors"
-            >
-              View All Services <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
+          <a
+            href={COMPANY_INFO.phoneLink}
+            className="inline-flex items-center gap-3 bg-brand-blue hover:bg-blue-900 text-white text-2xl font-bold py-4 px-12 rounded-full shadow-xl transition-transform transform hover:-translate-y-1"
+          >
+            <Phone className="w-6 h-6 fill-current" />
+            {COMPANY_INFO.phone}
+          </a>
         </div>
       </section>
     </div>

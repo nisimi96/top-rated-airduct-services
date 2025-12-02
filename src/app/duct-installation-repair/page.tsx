@@ -34,10 +34,11 @@ const commonIssues = [
 
 export default function DuctInstallationRepairPage() {
   return (
-    <div className="pt-20 bg-gray-50">
+    <div className="pt-16 bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-brand-blue text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-900/50"></div>
+      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center" style={{backgroundImage: 'url(/images/duct-repair.webp)'}}>
+        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-brand-lime/10 px-4 py-2 rounded-full border border-brand-lime/20 mb-6">
             <Wrench className="w-5 h-5 text-brand-lime" />
@@ -91,7 +92,7 @@ export default function DuctInstallationRepairPage() {
             <div className="lg:w-1/2 relative">
               <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-100 relative h-96">
                 <Image
-                  src="/images/placeholders/hvac-tech.jpg"
+                  src="/images/duct-repair.webp"
                   alt="Technician repairing HVAC ductwork"
                   fill
                   className="w-full h-full object-cover"

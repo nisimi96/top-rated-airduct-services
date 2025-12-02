@@ -1,15 +1,27 @@
-import type { Metadata } from 'next'
-import { Phone, Star, ShieldCheck, Award } from 'lucide-react'
-import { COMPANY_INFO, WHY_US_FEATURES } from '@/lib/constants'
+'use client'
 
-export const metadata: Metadata = {
-  title: "Why We Are Atlanta's Top Rated Air Duct Cleaning Company",
-  description: 'NADCA certified experts. Superior technology. Transparent pricing. 100% satisfaction guarantee. Here\'s why we\'re Atlanta\'s top choice.',
-}
+import { useState, useEffect } from 'react'
+import { Phone, Star, ShieldCheck, Award } from 'lucide-react'
+import { COMPANY_INFO, WHY_US_FEATURES, TESTIMONIALS } from '@/lib/constants'
+
+const BEFORE_AFTER_PAIRS = [
+  { before: '/images/dirty-duct.webp', after: '/images/clean-duct.webp' },
+  { before: '/images/dirty-duct2.webp', after: '/images/clean-duct2.webp' },
+  { before: '/images/dirty-duct3.webp', after: '/images/clean-duct3.webp' },
+]
 
 export default function WhyUsPage() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % BEFORE_AFTER_PAIRS.length)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
   return (
-    <div className="pt-20 bg-gray-50">
+    <div className="pt-16 bg-gray-50">
       {/* Page Header */}
       <section className="bg-white text-brand-blue py-16 md:py-20 border-b border-gray-200">
         <div className="container mx-auto px-4 text-center">
@@ -53,6 +65,67 @@ export default function WhyUsPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Image Between Section with Before & After */}
+      <section className="py-16 bg-gray-100">
+        <div className="container mx-auto px-4">
+          {/* Van Image */}
+          <div className="rounded-3xl overflow-hidden shadow-2xl max-w-2xl mx-auto mb-12">
+            <img
+              src="/images/work_van2.webp"
+              alt="Professional technician working on air duct cleaning"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          {/* Before & After Carousel */}
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-bold text-brand-blue text-center mb-8">
+              See the Difference We Make
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Before */}
+              <div className="text-center">
+                <p className="text-base font-bold text-gray-700 mb-2">Before</p>
+                <div className="rounded-2xl overflow-hidden shadow-lg h-48 md:h-64">
+                  <img
+                    src={BEFORE_AFTER_PAIRS[currentIndex].before}
+                    alt="Dirty air duct before cleaning"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* After */}
+              <div className="text-center">
+                <p className="text-base font-bold text-brand-lime mb-2">After</p>
+                <div className="rounded-2xl overflow-hidden shadow-lg h-48 md:h-64">
+                  <img
+                    src={BEFORE_AFTER_PAIRS[currentIndex].after}
+                    alt="Clean air duct after professional cleaning"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Progress Indicators */}
+            <div className="flex justify-center gap-2 mt-6">
+              {BEFORE_AFTER_PAIRS.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentIndex ? 'bg-brand-lime' : 'bg-gray-300'
+                  }`}
+                  aria-label={`Go to pair ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -101,16 +174,29 @@ export default function WhyUsPage() {
             </div>
           </div>
 
-          {/* Testimonial Quote */}
-          <div className="mt-16 bg-brand-blue rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
-            <div className="relative z-10">
-              <p className="text-2xl md:text-3xl text-white font-medium italic leading-relaxed mb-8">
-                "I was amazed at what came out of our vents. The technicians were professional, polite, and left my house cleaner than they found it. Worth every penny for the peace of mind."
-              </p>
-              <div className="flex flex-col items-center">
-                <span className="font-bold text-brand-lime text-lg tracking-wide uppercase">Michael R.</span>
-                <span className="text-blue-300">Sandy Springs, GA</span>
-              </div>
+          {/* Testimonials Grid */}
+          <div className="mt-16">
+            <h3 className="text-3xl md:text-4xl font-bold text-brand-blue text-center mb-12">What Our Customers Say</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {TESTIMONIALS.map((testimonial) => (
+                <div
+                  key={testimonial.id}
+                  className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 leading-relaxed mb-6 italic">
+                    "{testimonial.quote}"
+                  </p>
+                  <div>
+                    <p className="font-bold text-brand-blue">{testimonial.author}</p>
+                    <p className="text-gray-600 text-sm">{testimonial.location}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

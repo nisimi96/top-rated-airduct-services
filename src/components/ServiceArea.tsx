@@ -42,14 +42,15 @@ const ServiceArea: React.FC = () => {
             </div>
           </div>
 
-          {/* Map Side - Using a placeholder image instead of iframe */}
-          <div className="lg:w-2/3 h-80 lg:h-auto min-h-[400px] relative group bg-gray-200 rounded-lg overflow-hidden">
-            <div className="w-full h-full flex items-center justify-center text-gray-500">
-              <p className="text-center">
-                <MapPin className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                Map Service Area - Atlanta Metro
-              </p>
-            </div>
+          {/* Map Side - Using atlanta-map.webp */}
+          <div className="lg:w-2/3 h-80 lg:h-auto min-h-[400px] relative group rounded-lg overflow-hidden">
+            <Image
+              src="/images/atlanta-map.webp"
+              alt="Service Area Map - Atlanta Metro"
+              fill
+              className="w-full h-full object-cover"
+              sizes="(max-width: 1024px) 100vw, 66vw"
+            />
           </div>
         </div>
       </div>

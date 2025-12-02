@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { Phone, Lightbulb, ShieldCheck, HeartPulse, Zap, CheckCircle, Info, Sparkles } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
 
@@ -9,10 +10,11 @@ export const metadata: Metadata = {
 
 export default function UVLightInstallationPage() {
   return (
-    <div className="pt-20 bg-gray-50">
+    <div className="pt-16 bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-brand-blue text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-900/50"></div>
+      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center" style={{backgroundImage: 'url(/images/hero-bg.webp)'}}>
+        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-brand-lime/10 px-4 py-2 rounded-full border border-brand-lime/20 mb-6">
             <Lightbulb className="w-5 h-5 text-brand-lime" />

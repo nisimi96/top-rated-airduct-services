@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Phone, ArrowRight, Building2, Clock, Stethoscope, Shield } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
@@ -10,12 +11,17 @@ export const metadata: Metadata = {
 
 export default function CommercialServicesPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-16">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-r from-brand-blue to-blue-800 text-white">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Commercial HVAC Services</h1>
-          <p className="text-xl text-blue-100 max-w-2xl mb-8">
+      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center" style={{backgroundImage: 'url(/images/hero-bg.webp)'}}>
+        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            Commercial HVAC <br/>
+            <span className="text-brand-lime">Services</span>
+          </h1>
+          <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-8 font-light">
             Professional duct cleaning for offices, retail, warehouses, and industrial spaces. OSHA-compliant and minimally disruptive.
           </p>
           <a

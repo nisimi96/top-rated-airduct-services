@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { Phone, MapPin, Navigation, Info } from 'lucide-react'
 import { COMPANY_INFO, SERVICE_CITIES } from '@/lib/constants'
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ServiceAreaPage() {
   return (
-    <div className="pt-20 bg-gray-50">
+    <div className="pt-16 bg-gray-50">
       {/* Page Header */}
       <section className="bg-white text-brand-blue py-16 md:py-20 border-b border-gray-200">
         <div className="container mx-auto px-4 text-center">
@@ -52,17 +53,13 @@ export default function ServiceAreaPage() {
             {/* Map Visual */}
             <div className="lg:w-2/3 w-full">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-brand-lime/50 h-[500px]">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d424396.3176723366!2d-84.42060495!3d33.7676338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5045d6993098d%3A0x66fede2f990b630b!2sAtlanta%2C%20GA!5e0!3m2!1sen!2sus!4v1650000000000!5m2!1sen!2sus"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Service Area Map Coverage"
-                  className="grayscale-[20%] contrast-125"
-                ></iframe>
+                <Image
+                  src="/images/atlanta-map.webp"
+                  alt="Service Area Map Coverage - Atlanta Metro"
+                  fill
+                  className="w-full h-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                />
 
                 {/* Floating Overlay Card */}
                 <div className="absolute bottom-6 left-6 bg-white p-4 rounded-xl shadow-lg hidden sm:block">

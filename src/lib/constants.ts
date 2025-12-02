@@ -158,3 +158,48 @@ export const SERVICE_CITIES = [
   "Fayetteville", "Douglasville", "Stone Mountain", "Suwanee",
   "Buford", "Cumming", "Canton", "Milton"
 ];
+
+export const TESTIMONIALS = [
+  {
+    id: 1,
+    quote: "I was amazed at what came out of our vents. The technicians were professional, polite, and left my house cleaner than they found it. Worth every penny for the peace of mind.",
+    author: "Michael R.",
+    location: "Sandy Springs, GA",
+    rating: 5,
+  },
+  {
+    id: 2,
+    quote: "Best decision we made for our home! Our allergies have completely disappeared after the cleaning. The team was punctual and explained everything they were doing.",
+    author: "Sarah T.",
+    location: "Atlanta, GA",
+    rating: 5,
+  },
+  {
+    id: 3,
+    quote: "Exceptional service from start to finish. They found issues with our HVAC system that other companies missed. Highly recommend to anyone in the area.",
+    author: "James M.",
+    location: "Marietta, GA",
+    rating: 5,
+  },
+  {
+    id: 4,
+    quote: "Professional, knowledgeable, and fair pricing. They even helped us understand our system better and gave us tips to maintain it. Couldn't ask for better service!",
+    author: "Jennifer L.",
+    location: "Alpharetta, GA",
+    rating: 5,
+  },
+  {
+    id: 5,
+    quote: "The dryer vent cleaning prevented a potential fire hazard in our home. The technicians were thorough and explained the risks very clearly. This is essential maintenance!",
+    author: "David P.",
+    location: "Roswell, GA",
+    rating: 5,
+  },
+  {
+    id: 6,
+    quote: "After cleaning our ducts, our home feels so fresh and clean. No more musty smells, and our AC runs so much quieter. Fantastic work!",
+    author: "Maria G.",
+    location: "Dunwoody, GA",
+    rating: 5,
+  },
+];

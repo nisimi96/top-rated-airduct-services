@@ -20,7 +20,12 @@
       "Bash(timeout 5 npm run dev:*)",
       "Bash(powershell -Command \"Expand-Archive -Path ''top-rated-air-duct-cleaning (1).zip'' -DestinationPath ''./original_reference'' -Force\")",
       "Bash(dir:*)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "Bash(find:*)",
+      "Bash(node convert-to-webp.js:*)",
+      "Bash(node convert-hero-bg.js:*)",
+      "Bash(timeout 15 npm run dev)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []

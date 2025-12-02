@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Phone, Menu, X, Wind } from 'lucide-react';
-import { COMPANY_INFO, NAVIGATION_LINKS } from '@/lib/constants';
+import { Phone, Menu, X, Wind, ChevronDown } from 'lucide-react';
+import { COMPANY_INFO, NAVIGATION_LINKS, DETAILED_SERVICES } from '@/lib/constants';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -59,12 +61,43 @@ const Header: React.FC = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {NAVIGATION_LINKS.map((link) => (
-             <Link
+            link.name === 'Services' ? (
+              <div key="services" className="relative group">
+                <button
+                  className="font-medium transition-colors text-sm uppercase tracking-wide text-gray-200 hover:text-brand-lime flex items-center gap-1"
+                  onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                  onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                >
+                  {link.name}
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+
+                {/* Desktop Dropdown Menu */}
+                <div
+                  className="absolute left-0 mt-0 w-56 bg-brand-blue border border-blue-600 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50"
+                  onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                  onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                >
+                  {DETAILED_SERVICES.map((service) => (
+                    <Link
+                      key={service.id}
+                      href={service.link}
+                      className="block px-4 py-2.5 text-sm text-gray-200 hover:text-brand-lime hover:bg-blue-800 transition-colors"
+                      onClick={() => setIsServicesDropdownOpen(false)}
+                    >
+                      {service.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <Link
                 key={link.name}
                 {...getLinkProps(link as any)}
-            >
+              >
                 {link.name}
-            </Link>
+              </Link>
+            )
           ))}
         </nav>
 
@@ -90,17 +123,46 @@ const Header: React.FC = () => {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-brand-blue border-t border-blue-800 absolute w-full shadow-xl h-screen">
+        <div className="md:hidden bg-brand-blue border-t border-blue-800 absolute w-full shadow-xl overflow-y-auto max-h-screen">
           <div className="flex flex-col p-6 space-y-6">
             {NAVIGATION_LINKS.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-white text-xl font-medium py-2 border-b border-blue-800/50"
-                onClick={() => handleNavClick(link.href)}
-              >
-                {link.name}
-              </Link>
+              link.name === 'Services' ? (
+                <div key="services-mobile" className="space-y-2">
+                  <button
+                    onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                    className="text-white text-xl font-medium py-2 border-b border-blue-800/50 w-full flex justify-between items-center"
+                  >
+                    {link.name}
+                    <ChevronDown className={`w-5 h-5 transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  {isMobileServicesOpen && (
+                    <div className="bg-blue-800 rounded-lg py-2 space-y-1 ml-4">
+                      {DETAILED_SERVICES.map((service) => (
+                        <Link
+                          key={service.id}
+                          href={service.link}
+                          className="block px-3 py-2 text-gray-200 hover:text-brand-lime text-lg font-medium"
+                          onClick={() => {
+                            handleNavClick(service.link);
+                            setIsMobileServicesOpen(false);
+                          }}
+                        >
+                          {service.title}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-white text-xl font-medium py-2 border-b border-blue-800/50"
+                  onClick={() => handleNavClick(link.href)}
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
              <a
                 href={COMPANY_INFO.phoneLink}

@@ -80,7 +80,7 @@ const WhyChooseUs: React.FC = () => {
           <div className="lg:w-1/2 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
                 <Image
-                    src="/images/placeholders/technician.jpg"
+                    src="/images/technician.webp"
                     alt="Technician cleaning air duct"
                     width={600}
                     height={800}

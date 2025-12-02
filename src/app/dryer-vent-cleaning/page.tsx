@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Phone, Flame, Zap, Clock, AlertTriangle, Thermometer, ShieldCheck, CheckCircle } from 'lucide-react'
+import { Phone, Flame, Zap, Clock, AlertTriangle, Thermometer, ShieldCheck, CheckCircle, ArrowRight } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -18,10 +18,11 @@ const signs = [
 
 export default function DryerVentCleaningPage() {
   return (
-    <div className="pt-20 bg-gray-50">
+    <div className="pt-16 bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-brand-blue text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-900/50"></div>
+      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center" style={{backgroundImage: 'url(/images/dirty-dry2.webp)'}}>
+        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-red-500/20 px-4 py-2 rounded-full border border-red-500/30 mb-6">
             <Flame className="w-5 h-5 text-red-400" />
@@ -92,6 +93,65 @@ export default function DryerVentCleaningPage() {
                 <p className="text-gray-600 leading-relaxed">{sign.desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* Dryer Vent Cleaning Workflow */}
+          <div className="mt-20">
+            <h3 className="text-2xl md:text-3xl font-bold text-brand-blue text-center mb-12">
+              Our Cleaning Process
+            </h3>
+
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4 max-w-4xl mx-auto">
+              {/* Before - Clogged */}
+              <div className="flex-1 text-center">
+                <p className="text-sm font-bold text-gray-600 mb-3 uppercase tracking-wide">Before Cleaning</p>
+                <div className="rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 bg-white">
+                  <img
+                    src="/images/dirty-dry.webp"
+                    alt="Clogged dryer vent before cleaning"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Arrow 1 */}
+              <div className="flex justify-center">
+                <div className="relative">
+                  <ArrowRight className="w-8 h-8 text-brand-lime animate-pulse" />
+                </div>
+              </div>
+
+              {/* Middle - During Process */}
+              <div className="flex-1 text-center">
+                <p className="text-sm font-bold text-gray-600 mb-3 uppercase tracking-wide">During Cleaning</p>
+                <div className="rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 bg-white">
+                  <img
+                    src="/images/dirty-dry2.webp"
+                    alt="Professional cleaning of dryer vent"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Arrow 2 */}
+              <div className="flex justify-center">
+                <div className="relative">
+                  <ArrowRight className="w-8 h-8 text-brand-lime animate-pulse" />
+                </div>
+              </div>
+
+              {/* After - Clean */}
+              <div className="flex-1 text-center">
+                <p className="text-sm font-bold text-brand-lime mb-3 uppercase tracking-wide">After Cleaning</p>
+                <div className="rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 bg-white">
+                  <img
+                    src="/images/clean-dryer.webp"
+                    alt="Clean dryer vent after professional cleaning"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

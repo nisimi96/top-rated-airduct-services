@@ -5,20 +5,10 @@ import { COMPANY_INFO } from '@/lib/constants';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-20">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0 w-full h-full">
-        <Image
-          src="/images/placeholders/hero-bg.jpg"
-          alt="Clean Living Room Interior"
-          fill
-          className="object-cover"
-          priority
-          sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
-        />
-        <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
-      </div>
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-20 bg-cover bg-center" style={{backgroundImage: 'url(/images/hero-bg.webp)'}}>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
 
       <div className="container mx-auto px-4 relative z-10 text-center text-white">
 

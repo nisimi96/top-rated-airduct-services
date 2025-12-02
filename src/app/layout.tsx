@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { SessionProvider } from 'next-auth/react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import StickyMobileCTA from '@/components/StickyMobileCTA'
@@ -38,12 +39,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning>
-        <div className="min-h-screen bg-white flex flex-col">
-          <Header />
-          <main className="flex-grow pt-20">{children}</main>
-          <Footer />
-          <StickyMobileCTA />
-        </div>
+        <SessionProvider>
+          <div className="min-h-screen bg-white flex flex-col">
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+            <StickyMobileCTA />
+          </div>
+        </SessionProvider>
       </body>
     </html>
   )
