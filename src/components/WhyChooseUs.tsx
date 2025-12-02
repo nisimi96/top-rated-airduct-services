@@ -52,7 +52,7 @@ const WhyChooseUs: React.FC = () => {
                     <div className="p-2 bg-brand-lime rounded-lg text-brand-blue">
                         <feature.icon className="w-6 h-6" />
                     </div>
-                    <h4 className="font-bold text-lg">{feature.title}</h4>
+                    <h3 className="font-bold text-lg">{feature.title}</h3>
                   </div>
                   <p className="text-blue-200 text-sm leading-relaxed pl-12">
                     {feature.description}
