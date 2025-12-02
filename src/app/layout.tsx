@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: 'Top Rated Air Duct Cleaning',
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon-32x32.png',
   },
 }
 
