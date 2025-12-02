@@ -46,7 +46,7 @@ export default function BeforeAfterSection() {
 
           {/* After */}
           <div className="text-center">
-            <p className="text-base font-bold text-brand-lime mb-2">After</p>
+            <p className="text-base font-bold text-brand-blue mb-2">After</p>
             <div className="rounded-2xl overflow-hidden shadow-lg relative h-48 md:h-64">
               <Image
                 src={BEFORE_AFTER_PAIRS[currentIndex].after}

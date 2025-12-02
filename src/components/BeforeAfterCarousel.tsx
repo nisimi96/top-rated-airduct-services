@@ -91,7 +91,7 @@ export default function BeforeAfterCarousel() {
 
           {/* After */}
           <div className="text-center">
-            <p className="text-xl font-bold text-brand-lime mb-4">After</p>
+            <p className="text-xl font-bold text-brand-blue mb-4">After</p>
             <div className="rounded-2xl overflow-hidden shadow-lg relative w-full" style={{paddingBottom: '66.67%'}}>
               <Image
                 src={pair.after}

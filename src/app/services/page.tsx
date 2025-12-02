@@ -14,7 +14,7 @@ export default function ServicesPage() {
       {/* Page Header */}
       <section className="bg-white text-brand-blue py-12 md:py-16 border-b border-gray-200">
         <div className="container mx-auto px-4 text-center">
-          <span className="text-brand-lime font-bold tracking-widest uppercase mb-4 block text-sm">Our Expertise</span>
+          <span className="text-brand-blue font-bold tracking-widest uppercase mb-4 block text-sm">Our Expertise</span>
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
             Your Complete Solution for <br/>
             <span className="text-brand-blue">Cleaner Air & Healthier Systems</span>

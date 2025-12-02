@@ -160,7 +160,7 @@ export default function DryerVentCleaningPage() {
 
               {/* After - Clean */}
               <div className="flex-1 text-center">
-                <p className="text-sm font-bold text-brand-lime mb-3 uppercase tracking-wide">After Cleaning</p>
+                <p className="text-sm font-bold text-brand-blue mb-3 uppercase tracking-wide">After Cleaning</p>
                 <div className="rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 bg-white">
                   <img
                     src="/images/clean-dryer.webp"

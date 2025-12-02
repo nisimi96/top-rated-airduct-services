@@ -102,7 +102,7 @@ export default function WhyUsPage() {
 
               {/* After */}
               <div className="text-center">
-                <p className="text-base font-bold text-brand-lime mb-2">After</p>
+                <p className="text-base font-bold text-brand-blue mb-2">After</p>
                 <div className="rounded-2xl overflow-hidden shadow-lg h-48 md:h-64">
                   <img
                     src={BEFORE_AFTER_PAIRS[currentIndex].after}
