@@ -106,7 +106,7 @@ export default function BeforeAfterCarousel() {
         </div>
 
         {/* Progress Indicators */}
-        <div className="flex justify-center gap-2 mt-8" role="group" aria-label="Carousel slide selectors">
+        <div className="flex justify-center gap-3 mt-8" role="group" aria-label="Carousel slide selectors">
           {BEFORE_AFTER_PAIRS.map((_, index) => (
             <button
               key={index}

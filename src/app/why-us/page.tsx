@@ -114,12 +114,12 @@ export default function WhyUsPage() {
             </div>
 
             {/* Progress Indicators */}
-            <div className="flex justify-center gap-2 mt-6">
+            <div className="flex justify-center gap-3 mt-8">
               {BEFORE_AFTER_PAIRS.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-colors ${
+                  className={`w-3 h-3 rounded-full transition-colors ${
                     index === currentIndex ? 'bg-brand-lime' : 'bg-gray-300'
                   }`}
                   aria-label={`Go to pair ${index + 1}`}
