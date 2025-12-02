@@ -49,78 +49,73 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className="py-20 bg-white border-b border-gray-200">
+      {/* Combined Form & Contact Info Section */}
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
-          <ContactForm />
-        </div>
-      </section>
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
 
-      {/* Secondary Contact Info & Details */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+            {/* Form - Takes up 2 columns on desktop, full width on mobile */}
+            <div className="lg:col-span-2">
+              <ContactForm />
+            </div>
 
-            {/* Information Column */}
-            <div className="space-y-10">
-              <h2 className="text-3xl font-bold text-brand-blue">Contact Details</h2>
+            {/* Contact Details Sidebar */}
+            <div className="space-y-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-blue">Contact Details</h2>
 
               {/* Email */}
-              <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-2xl border border-gray-100">
-                <div className="w-12 h-12 bg-blue-100 text-brand-blue rounded-full flex items-center justify-center shrink-0">
-                  <Mail className="w-6 h-6" />
+              <div className="flex gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="w-10 h-10 bg-blue-100 text-brand-blue rounded-full flex items-center justify-center shrink-0 mt-1">
+                  <Mail className="w-5 h-5" />
                 </div>
-                <div>
-                  <h3 className="font-bold text-lg text-brand-blue mb-1">Email Us</h3>
-                  <a href={`mailto:${COMPANY_INFO.email}`} className="text-gray-600 hover:text-brand-lime transition-colors">
+                <div className="min-w-0">
+                  <h3 className="font-bold text-brand-blue mb-1">Email</h3>
+                  <a href={`mailto:${COMPANY_INFO.email}`} className="text-gray-600 hover:text-brand-lime transition-colors text-sm break-all">
                     {COMPANY_INFO.email}
                   </a>
-                  <p className="text-xs text-gray-400 mt-2">For non-urgent inquiries.</p>
+                  <p className="text-xs text-gray-400 mt-1">Non-urgent inquiries</p>
                 </div>
               </div>
 
               {/* Hours */}
-              <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-2xl border border-gray-100">
-                <div className="w-12 h-12 bg-blue-100 text-brand-blue rounded-full flex items-center justify-center shrink-0">
-                  <Clock className="w-6 h-6" />
+              <div className="flex gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="w-10 h-10 bg-blue-100 text-brand-blue rounded-full flex items-center justify-center shrink-0 mt-1">
+                  <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg text-brand-blue mb-1">Operating Hours</h3>
-                  <ul className="text-gray-600 space-y-1 text-sm">
-                    <li className="flex justify-between w-48"><span>Sun - Fri:</span> <span>8:00 AM – 5:00 PM</span></li>
-                    <li className="flex justify-between w-48"><span>Saturday:</span> <span>Closed</span></li>
+                  <h3 className="font-bold text-brand-blue mb-1">Hours</h3>
+                  <ul className="text-gray-600 space-y-0.5 text-sm">
+                    <li>Sun - Fri: 8 AM – 5 PM</li>
+                    <li>Saturday: Closed</li>
                   </ul>
                 </div>
               </div>
 
               {/* Address */}
-              <div className="flex items-start gap-4 p-6 bg-gray-50 rounded-2xl border border-gray-100">
-                <div className="w-12 h-12 bg-blue-100 text-brand-blue rounded-full flex items-center justify-center shrink-0">
-                  <Building2 className="w-6 h-6" />
+              <div className="flex gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <div className="w-10 h-10 bg-blue-100 text-brand-blue rounded-full flex items-center justify-center shrink-0 mt-1">
+                  <Building2 className="w-5 h-5" />
                 </div>
-                <div>
-                  <h3 className="font-bold text-lg text-brand-blue mb-1">Office Location</h3>
-                  <address className="text-gray-600 not-italic mb-3">
-                    1880 West Oak Parkway<br/>
-                    Unit 104, Office 104<br/>
-                    Marietta, GA 30062
+                <div className="min-w-0">
+                  <h3 className="font-bold text-brand-blue mb-1">Office</h3>
+                  <address className="text-gray-600 not-italic text-sm mb-2 leading-snug">
+                    1880 West Oak Pkwy<br/>
+                    Unit 104, Marietta, GA 30062
                   </address>
-                  <div className="text-xs text-amber-600 font-medium bg-amber-50 px-3 py-2 rounded-lg border border-amber-100 inline-block">
-                    *Administrative Office. No equipment storage or walk-in service.
-                  </div>
+                  <p className="text-xs text-amber-600 font-medium bg-amber-50 px-2 py-1 rounded border border-amber-100">
+                    Admin only
+                  </p>
                 </div>
               </div>
-            </div>
 
-            {/* Map Column */}
-            <div className="h-full min-h-[400px] relative">
-              <div className="h-full rounded-3xl overflow-hidden shadow-lg border border-gray-200 relative group">
+              {/* Map */}
+              <div className="h-48 md:h-56 lg:h-64 relative rounded-xl overflow-hidden shadow-lg border border-gray-200">
                 <Image
                   src="/images/atlanta-map.webp"
                   alt="Atlanta Service Area Map"
                   fill
                   className="w-full h-full object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 30vw"
                 />
               </div>
             </div>
