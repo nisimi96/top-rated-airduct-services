@@ -59,41 +59,13 @@ ${body.message}
 This is an automated email. Please reply to ${body.email} to contact the customer.
 `
 
-    // Format a professional email for the customer
-    const customerEmailContent = `
-Hello ${body.name},
-
-Thank you for contacting Top Rated Air Duct Cleaning!
-
-We received your message and will get back to you as soon as possible, typically within 24 hours.
-
-Your Message Details:
-Service Interest: ${body.service || 'General Inquiry'}
-Message: ${body.message}
-
-If you need immediate assistance, please call us at ${COMPANY_INFO.phone}
-
-Best regards,
-Top Rated Air Duct Cleaning Team
-${COMPANY_INFO.phone}
-${COMPANY_INFO.email}
-`
-
-    // Send email to business
+    // Send email to business only
     await transporter.sendMail({
       from: process.env.GMAIL_USER,
       to: COMPANY_INFO.email,
       subject: `New Customer (Air Duct) Website - ${body.name}`,
       text: businessEmailContent,
       replyTo: body.email,
-    })
-
-    // Send confirmation email to customer
-    await transporter.sendMail({
-      from: process.env.GMAIL_USER,
-      to: body.email,
-      subject: 'We received your message - Top Rated Air Duct Cleaning',
-      text: customerEmailContent,
     })
 
     console.log('Contact form submitted by:', body.name, 'Email:', body.email)
