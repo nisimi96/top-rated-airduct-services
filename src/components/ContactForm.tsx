@@ -75,31 +75,25 @@ export default function ContactForm() {
         {/* Overlay */}
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-300">
           {/* Success Modal */}
-          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-md w-full animate-in zoom-in-95 duration-300">
-            <div className="flex justify-center mb-6">
+          <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 max-w-sm w-full animate-in zoom-in-95 duration-300">
+            <div className="flex justify-center mb-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-green-100 rounded-full animate-pulse" />
-                <CheckCircle className="w-16 h-16 text-green-500 relative" />
+                <CheckCircle className="w-14 h-14 text-green-500 relative" />
               </div>
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-3">
-              Email Sent Successfully!
+            <h2 className="text-xl md:text-2xl font-bold text-center text-gray-900 mb-2">
+              Message Sent!
             </h2>
 
-            <p className="text-center text-gray-600 mb-6">
-              Thank you for reaching out. We've received your message and will get back to you as soon as possible.
+            <p className="text-center text-gray-600 text-sm mb-6">
+              Thank you. We'll get back to you within 24 hours.
             </p>
-
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
-              <p className="text-sm text-blue-800">
-                <strong>What's next?</strong> Our team will review your information and contact you within 24 hours.
-              </p>
-            </div>
 
             <button
               onClick={() => setSubmitStatus('idle')}
-              className="w-full bg-brand-blue hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-xl transition-colors"
+              className="w-full bg-brand-blue hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-xl transition-colors text-sm"
             >
               Send Another Message
             </button>
