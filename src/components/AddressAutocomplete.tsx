@@ -18,6 +18,7 @@ export default function AddressAutocomplete({
   error,
 }: AddressAutocompleteProps) {
   const inputRef = useRef<HTMLInputElement>(null)
+  const suggestionsRef = useRef<HTMLDivElement>(null)
   const [isApiLoaded, setIsApiLoaded] = useState(false)
   const [localInput, setLocalInput] = useState(value || '')
 
@@ -77,9 +78,17 @@ export default function AddressAutocomplete({
   // Close suggestions when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
-        setShowPredictions(false)
+      const target = event.target as Node
+
+      // Don't close if clicking on input or suggestions dropdown
+      if (
+        (inputRef.current && inputRef.current.contains(target)) ||
+        (suggestionsRef.current && suggestionsRef.current.contains(target))
+      ) {
+        return
       }
+
+      setShowPredictions(false)
     }
 
     document.addEventListener('mousedown', handleClickOutside)
@@ -116,7 +125,10 @@ export default function AddressAutocomplete({
 
       {/* Suggestions Dropdown */}
       {showPredictions && predictions.length > 0 && (
-        <div className="absolute z-50 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg">
+        <div
+          ref={suggestionsRef}
+          className="absolute z-50 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg"
+        >
           {predictions.map((prediction, index) => (
             <button
               key={prediction.place_id || index}
