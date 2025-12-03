@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { MessageSquare, Loader } from 'lucide-react'
+import { MessageSquare, Loader, CheckCircle } from 'lucide-react'
 import AddressAutocomplete from './AddressAutocomplete'
 
 const contactSchema = z.object({
@@ -66,6 +66,47 @@ export default function ContactForm() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  // Show success modal if submission was successful
+  if (submitStatus === 'success') {
+    return (
+      <div className="w-full max-w-3xl mx-auto">
+        {/* Overlay */}
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-300">
+          {/* Success Modal */}
+          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-md w-full animate-in zoom-in-95 duration-300">
+            <div className="flex justify-center mb-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-green-100 rounded-full animate-pulse" />
+                <CheckCircle className="w-16 h-16 text-green-500 relative" />
+              </div>
+            </div>
+
+            <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-3">
+              Email Sent Successfully!
+            </h2>
+
+            <p className="text-center text-gray-600 mb-6">
+              Thank you for reaching out. We've received your message and will get back to you as soon as possible.
+            </p>
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+              <p className="text-sm text-blue-800">
+                <strong>What's next?</strong> Our team will review your information and contact you within 24 hours.
+              </p>
+            </div>
+
+            <button
+              onClick={() => setSubmitStatus('idle')}
+              className="w-full bg-brand-blue hover:bg-blue-900 text-white font-bold py-3 px-6 rounded-xl transition-colors"
+            >
+              Send Another Message
+            </button>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -210,23 +251,13 @@ export default function ContactForm() {
               )}
             </div>
 
-            {/* Status Messages */}
-            {submitStatus === 'success' && (
-              <div className="bg-green-50 border-2 border-green-200 text-green-700 p-4 rounded-lg flex items-start gap-3" role="status" aria-live="polite" aria-atomic="true">
-                <MessageSquare className="w-5 h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                <div>
-                  <p className="font-semibold">Thank you! Your message has been sent.</p>
-                  <p className="text-sm">We will get back to you within 24 hours.</p>
-                </div>
-              </div>
-            )}
-
+            {/* Error Message - Only shown in form, not for success */}
             {submitStatus === 'error' && (
               <div className="bg-red-50 border-2 border-red-200 text-red-700 p-4 rounded-lg flex items-start gap-3" role="alert" aria-live="assertive" aria-atomic="true">
                 <MessageSquare className="w-5 h-5 mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
                   <p className="font-semibold">Error sending message</p>
-                  <p className="text-sm">Please try again or call us directly.</p>
+                  <p className="text-sm">Please try again or call us directly at (770) 741-0615.</p>
                 </div>
               </div>
             )}
