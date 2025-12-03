@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { MapPin } from 'lucide-react'
+import { useGooglePlacesAutocomplete } from '@/hooks/useGooglePlacesAutocomplete'
 
 interface AddressAutocompleteProps {
   value: string | undefined
@@ -17,111 +18,73 @@ export default function AddressAutocomplete({
   error,
 }: AddressAutocompleteProps) {
   const inputRef = useRef<HTMLInputElement>(null)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [suggestions, setSuggestions] = useState<google.maps.places.AutocompletePrediction[]>([])
-  const [showSuggestions, setShowSuggestions] = useState(false)
-  const [autocompleteService, setAutocompleteService] = useState<google.maps.places.AutocompleteService | null>(null)
-  const [placesService, setPlacesService] = useState<google.maps.places.PlacesService | null>(null)
+  const [isApiLoaded, setIsApiLoaded] = useState(false)
+  const [localInput, setLocalInput] = useState(value || '')
 
-  // Load Google Maps API and initialize services
+  // Load Google Maps API script
   useEffect(() => {
-    // Set to loaded after a timeout to allow fallback functionality
     const loadTimeout = setTimeout(() => {
-      setIsLoaded(true)
+      setIsApiLoaded(true)
     }, 2000)
 
-    if (typeof window === 'undefined' || !window.google) {
-      const script = document.createElement('script')
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`
-      script.async = true
-      script.defer = true
-      script.onload = () => {
-        if (window.google) {
-          setAutocompleteService(new window.google.maps.places.AutocompleteService())
-          const dummyDiv = document.createElement('div')
-          setPlacesService(new window.google.maps.places.PlacesService(dummyDiv))
-          setIsLoaded(true)
-          clearTimeout(loadTimeout)
-        }
-      }
-      script.onerror = () => {
-        console.error('Failed to load Google Maps API')
-        // Allow input to work even if API fails to load
-        setIsLoaded(true)
-      }
-      document.head.appendChild(script)
-    } else if (window.google) {
-      setAutocompleteService(new window.google.maps.places.AutocompleteService())
-      const dummyDiv = document.createElement('div')
-      setPlacesService(new window.google.maps.places.PlacesService(dummyDiv))
-      setIsLoaded(true)
+    if (typeof window === 'undefined' || window.google) {
+      setIsApiLoaded(true)
+      clearTimeout(loadTimeout)
+      return
+    }
+
+    const script = document.createElement('script')
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`
+    script.async = true
+    script.defer = true
+    script.onload = () => {
+      setIsApiLoaded(true)
       clearTimeout(loadTimeout)
     }
+    script.onerror = () => {
+      console.error('Failed to load Google Maps API')
+      setIsApiLoaded(true)
+    }
+    document.head.appendChild(script)
 
     return () => clearTimeout(loadTimeout)
   }, [])
 
-  // Handle input change and get suggestions
-  const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value
-    onChange(inputValue)
+  // Use the custom hook for autocomplete functionality
+  const { predictions, isLoading, showPredictions, setShowPredictions, selectPlace } =
+    useGooglePlacesAutocomplete({
+      inputValue: isApiLoaded ? localInput : '',
+      onPlaceSelect: (address) => {
+        setLocalInput(address)
+        onChange(address)
+      },
+    })
 
-    if (!inputValue || !autocompleteService) {
-      setSuggestions([])
-      setShowSuggestions(false)
-      return
-    }
-
-    try {
-      const request = {
-        input: inputValue,
-        componentRestrictions: { country: 'us' },
-      }
-
-      const predictions = await autocompleteService.getPlacePredictions(request)
-      setSuggestions(predictions.predictions)
-      setShowSuggestions(true)
-    } catch (error) {
-      console.error('Autocomplete error:', error)
-      setSuggestions([])
-    }
+  // Handle input change with parallel state management
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value
+    setLocalInput(newValue)
+    onChange(newValue)
   }
 
   // Handle suggestion selection
-  const handleSuggestionClick = async (prediction: google.maps.places.AutocompletePrediction) => {
+  const handleSuggestionClick = (prediction: { place_id: string; description: string }) => {
+    selectPlace(prediction.place_id, prediction.description)
+    setLocalInput(prediction.description)
     onChange(prediction.description)
-    setSuggestions([])
-    setShowSuggestions(false)
-
-    // Get detailed place information
-    if (placesService && prediction.place_id) {
-      try {
-        placesService.getDetails(
-          { placeId: prediction.place_id },
-          (place, status) => {
-            if (status === window.google.maps.places.PlacesServiceStatus.OK && place) {
-              // You could use the detailed place data here if needed
-              console.log('Place details:', place)
-            }
-          }
-        )
-      } catch (error) {
-        console.error('Place details error:', error)
-      }
-    }
   }
 
   // Close suggestions when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
-        setShowSuggestions(false)
+        setShowPredictions(false)
       }
     }
 
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+  }, [setShowPredictions])
 
   return (
     <div className="relative">
@@ -132,9 +95,9 @@ export default function AddressAutocomplete({
         <input
           ref={inputRef}
           type="text"
-          value={value}
+          value={localInput}
           onChange={handleInputChange}
-          onFocus={() => value && suggestions.length > 0 && setShowSuggestions(true)}
+          onFocus={() => localInput && predictions.length > 0 && setShowPredictions(true)}
           placeholder={placeholder}
           className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
             error
@@ -143,22 +106,29 @@ export default function AddressAutocomplete({
           }`}
           aria-invalid={error ? 'true' : 'false'}
           aria-describedby={error ? 'address-error' : undefined}
-          disabled={!isLoaded}
         />
+        {isLoading && (
+          <div className="absolute right-3 top-3 text-gray-400">
+            <div className="w-5 h-5 border-2 border-gray-300 border-t-brand-blue rounded-full animate-spin" />
+          </div>
+        )}
       </div>
 
       {/* Suggestions Dropdown */}
-      {showSuggestions && suggestions.length > 0 && (
+      {showPredictions && predictions.length > 0 && (
         <div className="absolute z-50 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg">
-          {suggestions.map((prediction, index) => (
+          {predictions.map((prediction, index) => (
             <button
               key={prediction.place_id || index}
               onClick={() => handleSuggestionClick(prediction)}
               className="w-full px-4 py-3 text-left hover:bg-blue-50 flex items-start gap-3 border-b border-gray-100 last:border-0 transition-colors"
             >
-              <MapPin className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+              <MapPin className="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
               <div className="flex-1">
                 <p className="text-sm font-medium text-gray-900">{prediction.description}</p>
+                {prediction.secondary_text && (
+                  <p className="text-xs text-gray-500">{prediction.secondary_text}</p>
+                )}
               </div>
             </button>
           ))}
