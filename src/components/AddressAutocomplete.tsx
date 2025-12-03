@@ -25,6 +25,11 @@ export default function AddressAutocomplete({
 
   // Load Google Maps API and initialize services
   useEffect(() => {
+    // Set to loaded after a timeout to allow fallback functionality
+    const loadTimeout = setTimeout(() => {
+      setIsLoaded(true)
+    }, 2000)
+
     if (typeof window === 'undefined' || !window.google) {
       const script = document.createElement('script')
       script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`
@@ -36,10 +41,13 @@ export default function AddressAutocomplete({
           const dummyDiv = document.createElement('div')
           setPlacesService(new window.google.maps.places.PlacesService(dummyDiv))
           setIsLoaded(true)
+          clearTimeout(loadTimeout)
         }
       }
       script.onerror = () => {
         console.error('Failed to load Google Maps API')
+        // Allow input to work even if API fails to load
+        setIsLoaded(true)
       }
       document.head.appendChild(script)
     } else if (window.google) {
@@ -47,7 +55,10 @@ export default function AddressAutocomplete({
       const dummyDiv = document.createElement('div')
       setPlacesService(new window.google.maps.places.PlacesService(dummyDiv))
       setIsLoaded(true)
+      clearTimeout(loadTimeout)
     }
+
+    return () => clearTimeout(loadTimeout)
   }, [])
 
   // Handle input change and get suggestions
