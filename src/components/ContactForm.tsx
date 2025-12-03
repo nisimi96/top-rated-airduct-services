@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useSession, signIn, signOut } from 'next-auth/react'
-import { useForm } from 'react-hook-form'
+import { useState } from 'react'
+import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Mail, Phone, MessageSquare, Loader, LogOut, User } from 'lucide-react'
+import { MessageSquare, Loader } from 'lucide-react'
+import AddressAutocomplete from './AddressAutocomplete'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -19,7 +19,6 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>
 
 export default function ContactForm() {
-  const { data: session, status } = useSession()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -27,7 +26,7 @@ export default function ContactForm() {
     register,
     handleSubmit,
     reset,
-    setValue,
+    control,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -40,14 +39,6 @@ export default function ContactForm() {
       message: '',
     },
   })
-
-  // Pre-fill form with session data
-  useEffect(() => {
-    if (session?.user) {
-      setValue('name', session.user.name || '')
-      setValue('email', session.user.email || '')
-    }
-  }, [session, setValue])
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true)
@@ -77,19 +68,6 @@ export default function ContactForm() {
     }
   }
 
-  const isLoading = status === 'loading'
-  const isAuthenticated = status === 'authenticated'
-
-  if (isLoading) {
-    return (
-      <div className="w-full max-w-3xl mx-auto">
-        <div className="bg-gray-50 rounded-3xl shadow-lg border border-gray-200 p-8 md:p-12 flex items-center justify-center min-h-96">
-          <Loader className="w-8 h-8 animate-spin text-brand-blue" />
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div className="w-full max-w-3xl mx-auto">
       <div className="bg-gray-50 rounded-3xl shadow-lg border border-gray-200 p-8 md:p-12">
@@ -98,50 +76,7 @@ export default function ContactForm() {
           Fill out the form below and we'll get back to you within 24 hours.
         </p>
 
-        {/* Authentication Section */}
-        <div className="mb-8 pb-8 border-b border-gray-200">
-          {isAuthenticated && session?.user ? (
-            <div className="bg-white rounded-xl p-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                {session.user.image && (
-                  <img
-                    src={session.user.image}
-                    alt={session.user.name || 'User'}
-                    className="w-10 h-10 rounded-full"
-                  />
-                )}
-                <div>
-                  <p className="font-semibold text-gray-900">{session.user.name}</p>
-                  <p className="text-sm text-gray-600">{session.user.email}</p>
-                </div>
-              </div>
-              <button
-                onClick={() => signOut()}
-                className="flex items-center gap-2 bg-red-50 hover:bg-red-100 text-red-600 font-semibold py-2 px-4 rounded-lg transition-colors"
-              >
-                <LogOut className="w-4 h-4" />
-                Sign Out
-              </button>
-            </div>
-          ) : (
-            <div>
-              <p className="text-sm font-semibold text-gray-700 mb-4">
-                Sign in with Google to get started
-              </p>
-              <button
-                onClick={() => signIn('google')}
-                className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-300 hover:border-brand-blue hover:bg-blue-50 text-gray-700 font-semibold py-3 px-6 rounded-xl transition-colors"
-              >
-                <User className="w-5 h-5" />
-                Sign in with Google
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Form - Only show when authenticated */}
-        {isAuthenticated ? (
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
             {/* Name Field */}
             <div>
               <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -158,7 +93,6 @@ export default function ContactForm() {
                 aria-invalid={errors.name ? 'true' : 'false'}
                 aria-describedby={errors.name ? 'name-error' : undefined}
               />
-              <p className="text-xs text-gray-500 mt-1">Pre-filled from your account. Feel free to edit.</p>
               {errors.name && (
                 <p id="name-error" className="text-red-600 text-sm mt-1" role="alert">{errors.name.message}</p>
               )}
@@ -180,7 +114,6 @@ export default function ContactForm() {
                 aria-invalid={errors.email ? 'true' : 'false'}
                 aria-describedby={errors.email ? 'email-error' : undefined}
               />
-              <p className="text-xs text-gray-500 mt-1">Pre-filled from your account. Feel free to edit.</p>
               {errors.email && (
                 <p id="email-error" className="text-red-600 text-sm mt-1" role="alert">{errors.email.message}</p>
               )}
@@ -212,20 +145,18 @@ export default function ContactForm() {
               <label htmlFor="propertyAddress" className="block text-sm font-semibold text-gray-700 mb-2">
                 Property Address *
               </label>
-              <input
-                {...register('propertyAddress')}
-                type="text"
-                id="propertyAddress"
-                placeholder="123 Main St, Atlanta, GA 30303"
-                className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
-                  errors.propertyAddress ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
-                }`}
-                aria-invalid={errors.propertyAddress ? 'true' : 'false'}
-                aria-describedby={errors.propertyAddress ? 'propertyAddress-error' : undefined}
+              <Controller
+                name="propertyAddress"
+                control={control}
+                render={({ field }) => (
+                  <AddressAutocomplete
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder="123 Main St, Atlanta, GA 30303"
+                    error={errors.propertyAddress?.message}
+                  />
+                )}
               />
-              {errors.propertyAddress && (
-                <p id="propertyAddress-error" className="text-red-600 text-sm mt-1" role="alert">{errors.propertyAddress.message}</p>
-              )}
             </div>
 
             {/* Service Selection */}
@@ -323,13 +254,6 @@ export default function ContactForm() {
               We respect your privacy. Your information will never be shared.
             </p>
           </form>
-        ) : (
-          <div className="text-center py-8">
-            <p className="text-gray-600">
-              Please sign in with your Google account to continue with the contact form.
-            </p>
-          </div>
-        )}
       </div>
     </div>
   )
