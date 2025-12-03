@@ -68,36 +68,34 @@ export default function ContactForm() {
     }
   }
 
-  // Show success modal if submission was successful
+  // Show success message if submission was successful
   if (submitStatus === 'success') {
     return (
-      <div className="w-full max-w-3xl mx-auto">
-        {/* Overlay */}
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-300">
-          {/* Success Modal */}
-          <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 max-w-sm w-full animate-in zoom-in-95 duration-300">
-            <div className="flex justify-center mb-4">
-              <div className="relative">
-                <div className="absolute inset-0 bg-green-100 rounded-full animate-pulse" />
-                <CheckCircle className="w-14 h-14 text-green-500 relative" />
+      <div className="w-full max-w-3xl mx-auto bg-gray-50 rounded-3xl shadow-lg border border-gray-200 p-8 md:p-12">
+        <div className="flex flex-col items-center justify-center py-16 animate-in fade-in duration-500">
+          <div className="mb-6 flex items-center justify-center">
+            <div className="relative">
+              <div className="absolute inset-0 bg-green-400 rounded-full animate-pulse opacity-25" />
+              <div className="relative bg-green-50 rounded-full p-4">
+                <CheckCircle className="text-green-600 w-12 h-12" />
               </div>
             </div>
-
-            <h2 className="text-xl md:text-2xl font-bold text-center text-gray-900 mb-2">
-              Message Sent!
-            </h2>
-
-            <p className="text-center text-gray-600 text-sm mb-6">
-              Thank you. We'll get back to you within 24 hours.
-            </p>
-
-            <button
-              onClick={() => setSubmitStatus('idle')}
-              className="w-full bg-brand-blue hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-xl transition-colors text-sm"
-            >
-              Send Another Message
-            </button>
           </div>
+
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
+            Message Sent!
+          </h2>
+
+          <p className="text-lg text-gray-600 text-center max-w-2xl mb-8">
+            Thank you! Your message has been sent. We will get back to you within 24 hours.
+          </p>
+
+          <button
+            onClick={() => setSubmitStatus('idle')}
+            className="bg-brand-blue hover:bg-blue-900 text-white font-bold py-3 px-8 rounded-xl transition-colors"
+          >
+            Send Another Message
+          </button>
         </div>
       </div>
     )
