@@ -118,6 +118,7 @@ export default function ContactForm() {
                 type="text"
                 id="name"
                 placeholder="John Doe"
+                autoComplete="name"
                 className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
                   errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
                 }`}
@@ -139,6 +140,7 @@ export default function ContactForm() {
                 type="email"
                 id="email"
                 placeholder="john@example.com"
+                autoComplete="email"
                 className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
                   errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
                 }`}
@@ -160,6 +162,7 @@ export default function ContactForm() {
                 type="tel"
                 id="phone"
                 placeholder="(770) 123-4567"
+                autoComplete="tel"
                 className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
                   errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
                 }`}
