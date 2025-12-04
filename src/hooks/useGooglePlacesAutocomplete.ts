@@ -75,7 +75,6 @@ export const useGooglePlacesAutocomplete = ({
   // consider upgrading to the new AutocompleteSuggestion API (requires separate backend implementation)
   const fallbackToClientSideAPI = (input: string) => {
     if (typeof window === 'undefined' || !window.google?.maps?.places) {
-      console.warn('Google Maps API not available for fallback')
       setPredictions([])
       setIsLoading(false)
       return
@@ -97,19 +96,17 @@ export const useGooglePlacesAutocomplete = ({
           },
         },
         (results, status) => {
-          console.log('Fallback autocomplete results:', { results, status })
           if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-            const mapped = results.map((p) => ({
-              place_id: p.place_id || '',
-              description: p.description,
-              main_text: p.structured_formatting?.main_text,
-              secondary_text: p.structured_formatting?.secondary_text,
-            }))
-            console.log('Fallback - setting predictions:', mapped)
-            setPredictions(mapped)
+            setPredictions(
+              results.map((p) => ({
+                place_id: p.place_id || '',
+                description: p.description,
+                main_text: p.structured_formatting?.main_text,
+                secondary_text: p.structured_formatting?.secondary_text,
+              }))
+            )
             setShowPredictions(true)
           } else {
-            console.log('Fallback - no results, status:', status)
             setPredictions([])
             setShowPredictions(false)
           }
