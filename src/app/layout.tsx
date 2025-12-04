@@ -64,6 +64,11 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://mapsplatform.googleapis.com" />
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
 
+        {/* Preload images with proper 'as' attribute */}
+        <link rel="preload" as="image" href="/images/dirty-dry2.webp" />
+        <link rel="preload" as="image" href="/images/clean-dryer.webp" />
+        <link rel="preload" as="image" href="/images/dirty-dry.webp" />
+
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Phone, Mail, Flame, Zap, Clock, AlertTriangle, Thermometer, ShieldCheck, CheckCircle, ArrowRight } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
@@ -38,7 +37,7 @@ export default function DryerVentCleaningPage() {
   return (
     <div className="bg-gray-50">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center" style={{backgroundImage: 'url(/images/dirty-dry2.webp)', paddingTop: 'calc(100px + 5rem)'}}>
+      <section className="relative min-h-[90vh] flex items-center justify-center text-white overflow-hidden bg-cover bg-center" style={{backgroundImage: 'url(/images/dirty-dry2.webp)', paddingTop: 'calc(100px + 5rem)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
         <div className="absolute inset-0 bg-brand-blue/80 mix-blend-multiply"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-transparent to-transparent"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
