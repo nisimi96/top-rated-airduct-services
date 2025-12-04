@@ -1,11 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { MessageSquare, Loader, CheckCircle } from 'lucide-react'
-import AddressAutocomplete from './AddressAutocomplete'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -26,7 +25,6 @@ export default function ContactForm() {
     register,
     handleSubmit,
     reset,
-    control,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -178,18 +176,20 @@ export default function ContactForm() {
               <label htmlFor="propertyAddress" className="block text-sm font-semibold text-gray-700 mb-2">
                 Property Address *
               </label>
-              <Controller
-                name="propertyAddress"
-                control={control}
-                render={({ field }) => (
-                  <AddressAutocomplete
-                    value={field.value}
-                    onChange={field.onChange}
-                    placeholder="123 Main St, Atlanta, GA 30303"
-                    error={errors.propertyAddress?.message}
-                  />
-                )}
+              <input
+                {...register('propertyAddress')}
+                type="text"
+                id="propertyAddress"
+                placeholder="123 Main St, Atlanta, GA 30303"
+                className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
+                  errors.propertyAddress ? 'border-red-500 focus:border-red-500 focus:ring-red-50' : 'border-gray-300 focus:border-brand-blue focus:ring-blue-50'
+                }`}
+                aria-invalid={errors.propertyAddress ? 'true' : 'false'}
+                aria-describedby={errors.propertyAddress ? 'propertyAddress-error' : undefined}
               />
+              {errors.propertyAddress && (
+                <p id="propertyAddress-error" className="text-red-600 text-sm mt-1" role="alert">{errors.propertyAddress.message}</p>
+              )}
             </div>
 
             {/* Service Selection */}
