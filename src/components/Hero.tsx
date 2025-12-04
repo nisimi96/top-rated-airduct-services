@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import { Phone, CheckCircle, Star } from 'lucide-react';
+import { Phone, Mail, CheckCircle, Star } from 'lucide-react';
 import { COMPANY_INFO } from '@/lib/constants';
+import Link from 'next/link';
 
 const Hero: React.FC = () => {
   return (
@@ -52,6 +53,13 @@ const Hero: React.FC = () => {
             <Phone className="w-6 h-6 fill-current" />
             Call For Free Estimate
           </a>
+          <Link
+            href="/contact"
+            className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white/20 hover:bg-white/30 text-white font-bold text-xl py-4 px-10 rounded-full transition-all transform hover:scale-105 border border-white/40 backdrop-blur-sm"
+          >
+            <Mail className="w-6 h-6" />
+            Send us Email
+          </Link>
         </div>
 
         {/* Trust Signals Footer in Hero */}

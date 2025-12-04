@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Phone, Flame, Zap, Clock, AlertTriangle, Thermometer, ShieldCheck, CheckCircle, ArrowRight } from 'lucide-react'
+import { Phone, Mail, Flame, Zap, Clock, AlertTriangle, Thermometer, ShieldCheck, CheckCircle, ArrowRight } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -53,13 +53,22 @@ export default function DryerVentCleaningPage() {
           <p className="text-xl text-blue-100 max-w-3xl mx-auto font-light leading-relaxed mb-10">
             Thousands of house fires occur every year due to clogged dryer vents. Our professional cleaning ensures your family is safe and your energy bills stay low.
           </p>
-          <a
-            href={COMPANY_INFO.phoneLink}
-            className="inline-flex items-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold py-4 px-8 rounded-full transition-all shadow-lg hover:shadow-lime-500/20 text-lg"
-          >
-            <Phone className="w-5 h-5 fill-current" />
-            <span>Schedule Safety Inspection</span>
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={COMPANY_INFO.phoneLink}
+              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold py-4 px-10 rounded-full transition-all transform hover:scale-105 shadow-lg hover:shadow-lime-500/20 text-xl"
+            >
+              <Phone className="w-6 h-6 fill-current" />
+              <span>Schedule Safety Inspection</span>
+            </a>
+            <Link
+              href="/contact"
+              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white/20 hover:bg-white/30 text-white font-bold py-4 px-10 rounded-full transition-all transform hover:scale-105 border border-white/40 backdrop-blur-sm text-xl"
+            >
+              <Mail className="w-6 h-6" />
+              <span>Send us Email</span>
+            </Link>
+          </div>
         </div>
       </section>
 

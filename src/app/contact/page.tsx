@@ -2,13 +2,10 @@ import Image from 'next/image'
 import { Phone, Mail, Clock, Building2 } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
 import ContactForm from '@/components/ContactForm'
-import GoogleMapsScript from '@/components/GoogleMapsScript'
 
 export default function ContactPage() {
   return (
     <>
-      {/* Load Google Maps API only on contact page with proper async loading */}
-      <GoogleMapsScript />
 
       <div className="bg-gray-50" style={{paddingTop: 'calc(100px + 5rem)'}}>
       {/* Introduction Header */}

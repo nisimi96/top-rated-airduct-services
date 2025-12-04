@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { COMPANY_INFO } from '@/lib/constants';
+import Link from 'next/link';
 
 const Footer: React.FC = () => {
   return (
@@ -37,13 +38,13 @@ const Footer: React.FC = () => {
                 </div>
               </a>
 
-              <div className="flex items-start gap-4">
-                <Mail className="w-6 h-6 text-brand-lime mt-1" />
+              <Link href="/contact" className="flex items-start gap-4 group">
+                <Mail className="w-6 h-6 text-brand-lime mt-1 group-hover:scale-110 transition-transform" />
                 <div>
                   <span className="block text-gray-300 text-sm">Email</span>
-                  <span className="text-white">{COMPANY_INFO.email}</span>
+                  <span className="text-white group-hover:text-brand-lime transition-colors">{COMPANY_INFO.email}</span>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
 

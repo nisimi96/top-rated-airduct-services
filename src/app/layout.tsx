@@ -58,7 +58,7 @@ export default function RootLayout({
   const baseUrl = 'https://topratedairduct.com'
 
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <head>
         {/* DNS Prefetch for Google APIs */}
         <link rel="dns-prefetch" href="https://mapsplatform.googleapis.com" />
