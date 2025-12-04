@@ -82,7 +82,7 @@ export default function AddressAutocomplete({
           type="text"
           value={localInput}
           onChange={handleInputChange}
-          onFocus={() => localInput && predictions.length > 0 && setShowPredictions(true)}
+          onFocus={() => localInput && setShowPredictions(true)}
           placeholder={placeholder}
           className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-colors bg-white ${
             error
