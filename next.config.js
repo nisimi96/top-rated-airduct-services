@@ -10,6 +10,9 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year cache for optimized images
     dangerouslyAllowSVG: true,
   },
+  experimental: {
+    optimizePreloads: false, // Disable automatic image preload generation
+  },
   compress: true,
   poweredByHeader: false,
   headers: async () => [
