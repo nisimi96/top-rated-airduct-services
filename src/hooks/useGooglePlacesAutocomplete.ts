@@ -40,7 +40,8 @@ export const useGooglePlacesAutocomplete = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.predictions && Array.isArray(data.predictions)) {
+        // Check if the backend API returned predictions or an error
+        if (data.predictions && Array.isArray(data.predictions) && data.predictions.length > 0) {
           setPredictions(
             data.predictions.map((p: any) => ({
               place_id: p.place_id || '',
@@ -50,14 +51,20 @@ export const useGooglePlacesAutocomplete = ({
             }))
           )
           setShowPredictions(true)
+          setIsLoading(false)
+        } else if (data.error || data.status === 'REQUEST_DENIED' || data.error_message) {
+          // Backend API failed or is restricted, use fallback
+          console.warn('Backend API unavailable, using client-side fallback')
+          fallbackToClientSideAPI(inputValue)
         } else {
+          // No predictions found
           setPredictions([])
           setShowPredictions(false)
+          setIsLoading(false)
         }
-        setIsLoading(false)
       })
       .catch((error) => {
-        console.error('Autocomplete error:', error)
+        console.error('Autocomplete fetch error:', error)
         // Fallback to client-side API if backend fails
         fallbackToClientSideAPI(inputValue)
       })
