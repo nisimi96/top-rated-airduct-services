@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface Prediction {
   place_id: string
@@ -12,16 +12,6 @@ interface UseGooglePlacesAutocompleteProps {
   onPlaceSelect: (address: string) => void
 }
 
-// Marietta, GA bounds (approximate 3 mile radius from center 33.956, -84.348)
-// Southwest corner: 33.906, -84.398
-// Northeast corner: 34.006, -84.298
-const MARIETTA_BOUNDS = {
-  south: 33.906,
-  west: -84.398,
-  north: 34.006,
-  east: -84.298,
-}
-
 export const useGooglePlacesAutocomplete = ({
   inputValue,
   onPlaceSelect,
@@ -29,30 +19,6 @@ export const useGooglePlacesAutocomplete = ({
   const [predictions, setPredictions] = useState<Prediction[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [showPredictions, setShowPredictions] = useState(false)
-  const autocompleteSessionTokenRef = useRef<google.maps.places.AutocompleteSessionToken | null>(null)
-  const autocompleteServiceRef = useRef<google.maps.places.AutocompleteService | null>(null)
-
-  // Initialize session token and autocomplete service once
-  useEffect(() => {
-    const initializeServices = () => {
-      if (typeof window === 'undefined' || !window.google?.maps?.places) {
-        setTimeout(initializeServices, 500)
-        return
-      }
-
-      try {
-        autocompleteSessionTokenRef.current =
-          new window.google.maps.places.AutocompleteSessionToken()
-        autocompleteServiceRef.current =
-          new window.google.maps.places.AutocompleteService()
-      } catch (error) {
-        console.error('Failed to initialize Google Places services:', error)
-        setTimeout(initializeServices, 1000)
-      }
-    }
-
-    initializeServices()
-  }, [])
 
   // Fetch predictions when input changes
   useEffect(() => {
@@ -62,26 +28,64 @@ export const useGooglePlacesAutocomplete = ({
       return
     }
 
-    if (!autocompleteServiceRef.current || !window.google?.maps?.places) {
+    setIsLoading(true)
+
+    // Try backend API first (uses new Google Places API)
+    fetch('/api/places/autocomplete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ input: inputValue }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.predictions && Array.isArray(data.predictions)) {
+          setPredictions(
+            data.predictions.map((p: any) => ({
+              place_id: p.place_id || '',
+              description: p.description,
+              main_text: p.structured_formatting?.main_text,
+              secondary_text: p.structured_formatting?.secondary_text,
+            }))
+          )
+          setShowPredictions(true)
+        } else {
+          setPredictions([])
+          setShowPredictions(false)
+        }
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        console.error('Autocomplete error:', error)
+        // Fallback to client-side API if backend fails
+        fallbackToClientSideAPI(inputValue)
+      })
+  }, [inputValue])
+
+  // Fallback to client-side Google Places API if backend fails
+  const fallbackToClientSideAPI = (input: string) => {
+    if (typeof window === 'undefined' || !window.google?.maps?.places) {
+      setPredictions([])
+      setIsLoading(false)
       return
     }
 
-    setIsLoading(true)
-
     try {
-      const request: any = {
-        input: inputValue,
-        bounds: MARIETTA_BOUNDS,
-        componentRestrictions: { country: 'us' },
-      }
-
-      // Only include sessionToken if it's initialized
-      if (autocompleteSessionTokenRef.current) {
-        request.sessionToken = autocompleteSessionTokenRef.current
-      }
-
-      autocompleteServiceRef.current.getPlacePredictions(
-        request,
+      const service = new window.google.maps.places.AutocompleteService()
+      service.getPlacePredictions(
+        {
+          input,
+          componentRestrictions: { country: 'us' },
+          locationBias: {
+            rectangle: {
+              south: 33.906,
+              west: -84.398,
+              north: 34.006,
+              east: -84.298,
+            },
+          },
+        },
         (results, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
             setPredictions(
@@ -101,27 +105,16 @@ export const useGooglePlacesAutocomplete = ({
         }
       )
     } catch (error) {
-      console.error('Autocomplete error:', error)
+      console.error('Fallback autocomplete error:', error)
       setPredictions([])
       setIsLoading(false)
     }
-  }, [inputValue])
+  }
 
-  // Select a place and reset session token
   const selectPlace = (placeId: string, description: string) => {
     onPlaceSelect(description)
     setPredictions([])
     setShowPredictions(false)
-
-    // Reset session token for next search (billing optimization)
-    if (window.google?.maps?.places) {
-      try {
-        autocompleteSessionTokenRef.current =
-          new window.google.maps.places.AutocompleteSessionToken()
-      } catch (error) {
-        console.error('Failed to reset session token:', error)
-      }
-    }
   }
 
   return {

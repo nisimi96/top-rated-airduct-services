@@ -60,6 +60,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* DNS Prefetch for Google APIs */}
+        <link rel="dns-prefetch" href="https://mapsplatform.googleapis.com" />
+        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"

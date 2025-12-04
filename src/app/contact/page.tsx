@@ -1,35 +1,20 @@
-import type { Metadata } from 'next'
+import Script from 'next/script'
 import Image from 'next/image'
 import { Phone, Mail, Clock, Building2 } from 'lucide-react'
 import { COMPANY_INFO } from '@/lib/constants'
 import ContactForm from '@/components/ContactForm'
 
-export const metadata: Metadata = {
-  title: 'Contact Top Rated Air Duct Cleaning | ' + COMPANY_INFO.phone,
-  description: 'Contact Top Rated Air Duct Cleaning for free estimates and service scheduling. Call 770-741-0615 or fill out our secure contact form.',
-  keywords: ['contact air duct cleaning', 'free estimate', 'HVAC service', 'Atlanta'],
-  openGraph: {
-    title: 'Contact Us for Free Air Duct Cleaning Estimates',
-    description: 'Book your air duct cleaning service today. Free estimates available.',
-    images: [
-      {
-        url: 'https://topratedairduct.com/images/contact-og.png',
-        width: 1200,
-        height: 630,
-        alt: 'Contact Top Rated Air Duct Cleaning'
-      }
-    ]
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Contact Top Rated Air Duct Cleaning',
-    description: 'Get your free estimate. Call 770-741-0615 or fill out our contact form.'
-  }
-}
-
 export default function ContactPage() {
   return (
-    <div className="bg-gray-50" style={{paddingTop: 'calc(100px + 5rem)'}}>
+    <>
+      {/* Load Google Maps API only on contact page */}
+      <Script
+        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}
+        strategy="lazyOnload"
+        async
+      />
+
+      <div className="bg-gray-50" style={{paddingTop: 'calc(100px + 5rem)'}}>
       {/* Introduction Header */}
       <section className="bg-white text-brand-blue py-16 border-b border-gray-200">
         <div className="container mx-auto px-4 text-center">
@@ -160,6 +145,7 @@ export default function ContactPage() {
           </a>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }

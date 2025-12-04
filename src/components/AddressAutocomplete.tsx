@@ -22,33 +22,9 @@ export default function AddressAutocomplete({
   const [isApiLoaded, setIsApiLoaded] = useState(false)
   const [localInput, setLocalInput] = useState(value || '')
 
-  // Load Google Maps API script
+  // Google Maps API is loaded by the contact page Script component
   useEffect(() => {
-    const loadTimeout = setTimeout(() => {
-      setIsApiLoaded(true)
-    }, 2000)
-
-    if (typeof window === 'undefined' || window.google) {
-      setIsApiLoaded(true)
-      clearTimeout(loadTimeout)
-      return
-    }
-
-    const script = document.createElement('script')
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`
-    script.async = true
-    script.defer = true
-    script.onload = () => {
-      setIsApiLoaded(true)
-      clearTimeout(loadTimeout)
-    }
-    script.onerror = () => {
-      console.error('Failed to load Google Maps API')
-      setIsApiLoaded(true)
-    }
-    document.head.appendChild(script)
-
-    return () => clearTimeout(loadTimeout)
+    setIsApiLoaded(true)
   }, [])
 
   // Use the custom hook for autocomplete functionality
