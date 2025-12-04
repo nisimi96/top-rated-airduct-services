@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center mt-32 md:mt-40 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-32 md:pt-40 overflow-hidden">
       <Image
         src="/images/hero-bg.webp"
         alt="Professional air duct cleaning service background"
