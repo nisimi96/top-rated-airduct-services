@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { MessageSquare, Loader, CheckCircle } from 'lucide-react'
+import { MessageSquare, Loader, CheckCircle, Mail, Phone } from 'lucide-react'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -13,6 +13,7 @@ const contactSchema = z.object({
   propertyAddress: z.string().min(5, 'Property address must be at least 5 characters'),
   service: z.enum(['air-duct-cleaning', 'dryer-vent-cleaning', 'hvac-installation', 'duct-repair', 'waterproofing', 'uv-light', 'insulation', 'mold-testing', 'other']),
   message: z.string().min(10, 'Message must be at least 10 characters'),
+  preferredContact: z.enum(['email', 'phone']).refine((val) => val, 'Please select a preferred contact method'),
 })
 
 type ContactFormData = z.infer<typeof contactSchema>
@@ -35,6 +36,7 @@ export default function ContactForm() {
       propertyAddress: '',
       service: undefined,
       message: '',
+      preferredContact: undefined,
     },
   })
 
@@ -222,6 +224,50 @@ export default function ContactForm() {
               </select>
               {errors.service && (
                 <p id="service-error" className="text-red-600 text-sm mt-1" role="alert">{errors.service.message}</p>
+              )}
+            </div>
+
+            {/* Preferred Contact Method */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-4">
+                How would you prefer to be contacted? *
+              </label>
+              <div className="grid grid-cols-2 gap-4">
+                <label className="relative cursor-pointer group">
+                  <input
+                    {...register('preferredContact')}
+                    type="radio"
+                    value="email"
+                    className="sr-only peer"
+                    aria-describedby={errors.preferredContact ? 'preferredContact-error' : undefined}
+                  />
+                  <div className="p-4 border-2 border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:border-brand-blue bg-white peer-checked:border-brand-lime peer-checked:bg-brand-blue peer-checked:shadow-lg peer-checked:[&>div>svg]:text-brand-lime peer-checked:[&>div>span]:text-brand-lime peer-checked:[&>p]:text-brand-lime">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <Mail className="w-5 h-5 text-brand-blue transition-colors" />
+                      <span className="font-semibold text-gray-800 transition-colors">Email</span>
+                    </div>
+                    <p className="text-xs text-gray-500 text-center transition-colors">We'll send you an email</p>
+                  </div>
+                </label>
+                <label className="relative cursor-pointer group">
+                  <input
+                    {...register('preferredContact')}
+                    type="radio"
+                    value="phone"
+                    className="sr-only peer"
+                    aria-describedby={errors.preferredContact ? 'preferredContact-error' : undefined}
+                  />
+                  <div className="p-4 border-2 border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:border-brand-blue bg-white peer-checked:border-brand-lime peer-checked:bg-brand-blue peer-checked:shadow-lg peer-checked:[&>div>svg]:text-brand-lime peer-checked:[&>div>span]:text-brand-lime peer-checked:[&>p]:text-brand-lime">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <Phone className="w-5 h-5 text-brand-blue transition-colors" />
+                      <span className="font-semibold text-gray-800 transition-colors">Phone Call</span>
+                    </div>
+                    <p className="text-xs text-gray-500 text-center transition-colors">We'll give you a call</p>
+                  </div>
+                </label>
+              </div>
+              {errors.preferredContact && (
+                <p id="preferredContact-error" className="text-red-600 text-sm mt-3" role="alert">{errors.preferredContact.message}</p>
               )}
             </div>
 

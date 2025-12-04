@@ -56,7 +56,7 @@ const Header: React.FC = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+        <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
           {NAVIGATION_LINKS.map((link) => (
             link.name === 'Services' ? (
               <div key="services" className="relative group">
@@ -113,7 +113,7 @@ const Header: React.FC = () => {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <a
             href={COMPANY_INFO.phoneLink}
             className="flex items-center gap-2 bg-brand-lime hover:bg-lime-400 text-brand-blue font-bold py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-md min-h-11"
@@ -125,7 +125,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-white"
+          className="lg:hidden text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
@@ -139,7 +139,7 @@ const Header: React.FC = () => {
       {isMobileMenuOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden bg-brand-blue border-t border-blue-800 absolute w-full shadow-xl overflow-y-auto max-h-screen"
+          className="lg:hidden bg-brand-blue border-t border-blue-800 absolute w-full shadow-xl overflow-y-auto max-h-screen"
           role="navigation"
           aria-label="Mobile navigation"
         >

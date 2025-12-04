@@ -9,6 +9,7 @@ interface ContactFormData {
   propertyAddress: string
   service: 'air-duct-cleaning' | 'dryer-vent-cleaning' | 'hvac-installation' | 'duct-repair' | 'waterproofing' | 'uv-light' | 'insulation' | 'mold-testing' | 'other'
   message: string
+  preferredContact: 'email' | 'phone'
 }
 
 // Initialize Nodemailer transporter
@@ -41,6 +42,7 @@ export async function POST(request: NextRequest) {
     const transporter = getTransporter()
 
     // Format the email content for business
+    const contactMethod = body.preferredContact === 'email' ? 'EMAIL' : 'PHONE CALL'
     const businessEmailContent = `
 New Contact Form Submission
 
@@ -51,6 +53,9 @@ Email: ${body.email}
 Phone: ${body.phone}
 Property Address: ${body.propertyAddress}
 Service Interest: ${body.service}
+
+📞 PREFERRED CONTACT METHOD: ${contactMethod}
+${body.preferredContact === 'phone' ? `Please call ${body.phone} to contact this customer.` : `Please email ${body.email} to contact this customer.`}
 
 Message:
 ${body.message}
