@@ -232,7 +232,7 @@ export default function ContactForm() {
               <label className="block text-sm font-semibold text-gray-700 mb-4">
                 How would you prefer to be contacted? *
               </label>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <label className="relative cursor-pointer group">
                   <input
                     {...register('preferredContact')}
@@ -241,12 +241,12 @@ export default function ContactForm() {
                     className="sr-only peer"
                     aria-describedby={errors.preferredContact ? 'preferredContact-error' : undefined}
                   />
-                  <div className="p-4 border-2 border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:border-brand-blue bg-white peer-checked:border-brand-lime peer-checked:bg-brand-blue peer-checked:shadow-lg peer-checked:[&>div>svg]:text-brand-lime peer-checked:[&>div>span]:text-brand-lime peer-checked:[&>p]:text-brand-lime">
+                  <div className="p-4 border-2 border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:border-brand-blue bg-white peer-checked:border-brand-lime peer-checked:bg-brand-blue peer-checked:shadow-lg peer-checked:[&>div>svg]:text-brand-lime peer-checked:[&>div>span]:text-brand-lime peer-checked:[&>p]:text-brand-lime h-full flex flex-col">
                     <div className="flex items-center justify-center gap-2 mb-2">
                       <Mail className="w-5 h-5 text-brand-blue transition-colors" />
                       <span className="font-semibold text-gray-800 transition-colors">Email</span>
                     </div>
-                    <p className="text-xs text-gray-500 text-center transition-colors">We'll send you an email</p>
+                    <p className="text-xs text-gray-500 text-center transition-colors flex-1">We'll send you an email</p>
                   </div>
                 </label>
                 <label className="relative cursor-pointer group">
@@ -257,12 +257,12 @@ export default function ContactForm() {
                     className="sr-only peer"
                     aria-describedby={errors.preferredContact ? 'preferredContact-error' : undefined}
                   />
-                  <div className="p-4 border-2 border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:border-brand-blue bg-white peer-checked:border-brand-lime peer-checked:bg-brand-blue peer-checked:shadow-lg peer-checked:[&>div>svg]:text-brand-lime peer-checked:[&>div>span]:text-brand-lime peer-checked:[&>p]:text-brand-lime">
+                  <div className="p-4 border-2 border-gray-300 rounded-xl cursor-pointer transition-all duration-200 hover:border-brand-blue bg-white peer-checked:border-brand-lime peer-checked:bg-brand-blue peer-checked:shadow-lg peer-checked:[&>div>svg]:text-brand-lime peer-checked:[&>div>span]:text-brand-lime peer-checked:[&>p]:text-brand-lime h-full flex flex-col">
                     <div className="flex items-center justify-center gap-2 mb-2">
                       <Phone className="w-5 h-5 text-brand-blue transition-colors" />
                       <span className="font-semibold text-gray-800 transition-colors">Phone Call</span>
                     </div>
-                    <p className="text-xs text-gray-500 text-center transition-colors">We'll give you a call</p>
+                    <p className="text-xs text-gray-500 text-center transition-colors flex-1">We'll give you a call</p>
                   </div>
                 </label>
               </div>
