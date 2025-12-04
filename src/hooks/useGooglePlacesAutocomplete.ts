@@ -71,6 +71,8 @@ export const useGooglePlacesAutocomplete = ({
   }, [inputValue])
 
   // Fallback to client-side Google Places API if backend fails
+  // Note: Using AutocompleteService as fallback. For production with high volume,
+  // consider upgrading to the new AutocompleteSuggestion API (requires separate backend implementation)
   const fallbackToClientSideAPI = (input: string) => {
     if (typeof window === 'undefined' || !window.google?.maps?.places) {
       setPredictions([])
@@ -79,6 +81,12 @@ export const useGooglePlacesAutocomplete = ({
     }
 
     try {
+      // Try to use new AutocompleteSuggestion API if available
+      if (window.google.maps.places.AutocompleteSuggestion) {
+        // New API approach - would require additional setup
+        // For now, fall back to AutocompleteService which still works
+      }
+
       const service = new window.google.maps.places.AutocompleteService()
       service.getPlacePredictions(
         {
