@@ -58,7 +58,7 @@ const Hero: React.FC = () => {
             className="w-full flex items-center justify-center gap-3 bg-white/20 hover:bg-white/30 text-white font-bold text-lg md:text-xl py-3 md:py-4 px-8 md:px-10 rounded-full transition-all transform hover:scale-105 border border-white/40 backdrop-blur-sm"
           >
             <Mail className="w-5 h-5 md:w-6 md:h-6" />
-            Send us Email
+            Book Now
           </Link>
         </div>
 

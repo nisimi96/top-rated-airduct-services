@@ -41,7 +41,7 @@ export default function BlownInInsulationPage() {
               className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white/20 hover:bg-white/30 text-white font-bold py-4 px-10 rounded-full transition-all transform hover:scale-105 border border-white/40 backdrop-blur-sm text-xl"
             >
               <Mail className="w-6 h-6" />
-              <span>Send us Email</span>
+              <span>Book Now</span>
             </Link>
           </div>
         </div>
